@@ -1,0 +1,3 @@
+#Emotion message
+float64 valence
+float64 arousal

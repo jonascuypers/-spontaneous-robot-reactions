@@ -1,0 +1,2 @@
+#VoiceEmotions message
+VoiceEmotionProbability[] emotions
