@@ -18,8 +18,9 @@
 
     (not (dog-silent brucedog))
 
-    (human-talking speech)
+    (not (human-talking speech))
 
+    (human-silent speech)
 
     (speech-from speech personbert)
 

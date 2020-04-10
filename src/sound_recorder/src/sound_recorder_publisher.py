@@ -10,7 +10,7 @@ import qi
 import time
 
 # from audio_analysis.wav_to_sound import Soundrecognizer
-robot_ip = "10.10.131.126"
+robot_ip = "127.0.0.1"
 port = 9559
 
 
@@ -19,8 +19,8 @@ class SoundRecorderPublisher:
         rospy.init_node('sound_recorder', anonymous=True)
         # create the publisher
         self.pub = rospy.Publisher('sound_recorder', String, queue_size=10)
-        self.path = "/home/jonas/recorded_sounds/"
-        # self.path = rospy.get_param("recording_path")
+        # self.path = "/home/jonas/recorded_sounds/"
+        self.path = rospy.get_param("recording_path")
         # Create the sound recogniser
         rospy.loginfo("Created recorder")
 
@@ -30,9 +30,9 @@ class SoundRecorderPublisher:
         tts.post.say("Hello, recognise sounds!")
         motion = ALProxy("ALMotion", robot_ip, port)
         motion.moveInit()
-        # motion.setStiffnesses("Body", 1.0)
+        motion.setStiffnesses("Body", 1.0)
         motion.post.moveTo(1, 0, -0.5)
-        # motion.post.setStiffnesses("Body", 0)
+        motion.post.setStiffnesses("Body", 0)
         tts.say("I'm walking")
 
 
@@ -47,7 +47,6 @@ class SoundRecorderPublisher:
         app = qi.Application(["SoundProcessingModule", "--qi-url=" + "tcp://10.10.131.126:9559"])
         app.start()
         session = app.session
-        peppertalks = PepperTalks(robot_ip, port)
         al_audio_device = session.service("ALAudioDevice")
         with RobotAudioStream(session, al_audio_device) as stream:
             i = 0
@@ -60,14 +59,13 @@ class SoundRecorderPublisher:
                 self.pub.publish(String(recorder.output_file_path))
                 recorder.output_file_path = self.path + "output_mic" + str(i) + ".wav"
 
-
     def start_recording_pc(self):
-        # peppertalks = PepperTalks(robot_ip, port)
         with MicrophoneStream(7,
                               1024) as stream:  # input device index can be determined with the list_input_devices method.
             i = 0
             recorder = StreamRecorder(stream, self.path + "output_mic" + str(i) + ".wav")
             sleep_duration = rospy.Rate(0.1)
+            self.startup_procedure()
             while not rospy.is_shutdown():
                 i += 1
                 recorder.start()
@@ -77,11 +75,24 @@ class SoundRecorderPublisher:
                 recorder.output_file_path = self.path + "output_mic" + str(i) + ".wav"
 
 
-
 class PepperTalks:
     def __init__(self, robot_ip, port):
         self.tts = ALProxy("ALTextToSpeech", robot_ip, port)
         self.tts.setLanguage("English")
+        # Get the services ALMotion & ALRobotPosture.
+
+        session = qi.Session()
+        try:
+            session.connect("tcp://" + robot_ip + ":" + str(port))
+        except RuntimeError:
+            print ("Can't connect to Naoqi at ip \"" + robot_ip + "\" on port " + str(port) + ".\n"
+                                                                                                  "Please check your script arguments. Run with -h option for help.")
+        motion_service = session.service("ALMotion")
+        posture_service = session.service("ALRobotPosture")
+
+        # Wake up robot
+        motion_service.wakeUp()
+
 
     def say_sound(self, sounds):
         if sounds:
@@ -90,5 +101,6 @@ class PepperTalks:
 
 
 SoundRecorderPublisher().start_recording_pc()
+
 
 

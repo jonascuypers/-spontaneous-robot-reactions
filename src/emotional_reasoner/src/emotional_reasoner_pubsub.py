@@ -3,6 +3,7 @@ import rospy
 from emotional_reasoner.msg import Emotion
 from voice_emotion_detection.msg import VoiceEmotions
 from std_msgs.msg import String
+from emotional_reasoner.srv import EmotionService, EmotionServiceResponse
 import math
 
 
@@ -12,8 +13,10 @@ class EmotionalReasonerPubSub:
         self.valence = 0
         self.arousal = 0
         self.pub = rospy.Publisher('emotional_reasoner', Emotion, queue_size=10)
+        self.service = rospy.Service('emotion_service', EmotionService, self.service_respond_emotion)
         rospy.Subscriber('voice_emotion_recognised', VoiceEmotions, self.adapt_model_speech)
         rospy.Subscriber('sound_recognised', VoiceEmotions, self.adapt_model_sounds)
+
         self.map_emotion_to_quantity = {
             "Neutral": {"valence": 0, "arousal": 0},
             "Happy": {"valence": 0.7, "arousal": 0.2},
@@ -63,6 +66,9 @@ class EmotionalReasonerPubSub:
         if vector_size > 1:
             self.valence = self.valence/vector_size
             self.arousal = self.arousal/vector_size
+
+    def service_respond_emotion(self, arg):
+        return EmotionServiceResponse(self.valence, self.arousal)
 
     def publisher(self):
         rate = rospy.Rate(0.1)  # 0.1hz

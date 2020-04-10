@@ -4,6 +4,8 @@ from std_msgs.msg import String
 import rosplan_pytools.interfaces.action_interface as act_int
 import rosplan_pytools.controller.knowledge_base as kb
 import rosplan_pytools.common.utils as pytools_utils
+
+
 pub = rospy.Publisher('sound_volume', String, queue_size=10)
 
 class TreatGiving(act_int.SimpleAction):
@@ -13,8 +15,9 @@ class TreatGiving(act_int.SimpleAction):
         rospy.loginfo("GIVING FOOD TO DOG")
         kb.add_predicate(pytools_utils.predicate_maker("dog-barking", "dog", dog, True))
         kb.add_predicate(pytools_utils.predicate_maker("dog-silent", "dog", dog))
-        super(TreatGiving, self)._report_success()
+        pytools_utils.tts("I will now give food to " + str(dog))
 
+        super(TreatGiving, self)._report_success()
 
 class DogTalking(act_int.SimpleAction):
     name = "saydogsilentaction"
@@ -23,8 +26,8 @@ class DogTalking(act_int.SimpleAction):
         rospy.loginfo("GIVING FOOD TO DOG")
         kb.add_predicate(pytools_utils.predicate_maker("dog-barking", "dog", dog, True))
         kb.add_predicate(pytools_utils.predicate_maker("dog-silent", "dog", dog))
+        pytools_utils.tts("Hey " + str(dog) + ", be silent!")
         super(DogTalking, self)._report_success()
-
 
 class MakeSilent(act_int.SimpleAction):
     name = "makesilentaction"
@@ -52,3 +55,4 @@ if __name__=="__main__":
     kb.initialize(prefix = "/rosplan_knowledge_base")
     act_int.start_actions("rosplan_plan_dispatcher/action_dispatch", "rosplan_plan_dispatcher/action_feedback")
     rospy.spin()
+
