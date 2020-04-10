@@ -1,2 +1,0 @@
-#VoiceEmotions message
-VoiceEmotionProbability[] emotions

@@ -65,7 +65,6 @@ class SoundRecorderPublisher:
             i = 0
             recorder = StreamRecorder(stream, self.path + "output_mic" + str(i) + ".wav")
             sleep_duration = rospy.Rate(0.1)
-            self.startup_procedure()
             while not rospy.is_shutdown():
                 i += 1
                 recorder.start()

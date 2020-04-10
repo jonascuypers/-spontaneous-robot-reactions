@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import rospy
 from emotional_reasoner.msg import Emotion
-from voice_emotion_detection.msg import VoiceEmotions
+from sound_analyzers.msg import RecognisedSounds
 from std_msgs.msg import String
 from emotional_reasoner.srv import EmotionService, EmotionServiceResponse
 import math
@@ -14,8 +14,8 @@ class EmotionalReasonerPubSub:
         self.arousal = 0
         self.pub = rospy.Publisher('emotional_reasoner', Emotion, queue_size=10)
         self.service = rospy.Service('emotion_service', EmotionService, self.service_respond_emotion)
-        rospy.Subscriber('voice_emotion_recognised', VoiceEmotions, self.adapt_model_speech)
-        rospy.Subscriber('sound_recognised', VoiceEmotions, self.adapt_model_sounds)
+        rospy.Subscriber('voice_emotion_recognised', RecognisedSounds, self.adapt_model_speech)
+        rospy.Subscriber('sound_recognised', RecognisedSounds, self.adapt_model_sounds)
 
         self.map_emotion_to_quantity = {
             "Neutral": {"valence": 0, "arousal": 0},
@@ -38,13 +38,13 @@ class EmotionalReasonerPubSub:
         }
 
     def adapt_model_speech(self, data):
-        data = data.emotions
+        data = data.sounds
         # find max emotion
         max_prob, max_emotion = 0, ""
         for emotion_prob in data:
             if emotion_prob.probability > max_prob:
                 max_prob = emotion_prob.probability
-                max_emotion = emotion_prob.emotion
+                max_emotion = emotion_prob.sound
 
         amounts = self.map_emotion_to_quantity[max_emotion]
         print max_emotion
@@ -52,9 +52,9 @@ class EmotionalReasonerPubSub:
         self.pub.publish(Emotion(self.valence, self.arousal))
 
     def adapt_model_sounds(self, data):
-        data = data.emotions
+        data = data.sounds
         for elem in data:
-            sound_emotion = self.map_sound_to_quantity[elem.emotion]
+            sound_emotion = self.map_sound_to_quantity[elem.sound]
             self.add_vectors(sound_emotion["valence"], sound_emotion["arousal"])
         rospy.Rate(0.5).sleep()
         self.pub.publish(Emotion(self.valence, self.arousal))

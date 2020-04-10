@@ -1,8 +1,9 @@
 <launch>
   <param name="recording_path" value="/home/jonas/recorded_sounds/" />
   <node name="recorder" pkg="sound_recorder" type="sound_recorder_publisher.py" />
-  <node name="sound_volume" pkg="sound_volume" type="sound_volume_pubsub.py" />
-  <node name="sound_recogniser" pkg="sound_recognition_dcase" type="sound_recognition_pubsub.py" />
+  <node name="sound_volume" pkg="sound_analyzers" type="sound_volume_pubsub.py" />
+  <node name="sound_recogniser" pkg="sound_analyzers" type="sound_recognition_pubsub.py" />
+  <node name="voice_emotion_recogniser" pkg="sound_analyzers" type="voice_emotion_pubsub.py" />
   <node name="emotional_reasoner" pkg="emotional_reasoner" type="emotional_reasoner_pubsub.py" />
   <node name="emotional_visualizer" pkg="emotional_reasoner" type="emotional_visualizer.py" />
 </launch>

@@ -1,3 +1,0 @@
-#VoiceEmotionProbability message
-string emotion
-float64 probability
