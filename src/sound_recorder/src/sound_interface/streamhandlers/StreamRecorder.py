@@ -31,16 +31,18 @@ class StreamRecorder(object):
         thread.start()
 
     def stop(self):
+        # This code is adapted to only get 431 frames for the sound recognition
+        while len(self.frames) < 431:
+            x = 1
         self.recording = False
-
         wave_file = wave.open(self.output_file_path, 'wb')
         wave_file.setnchannels(self.audio_stream_generator.channels)
         wave_file.setsampwidth(self.py_audio.get_sample_size(pyaudio.paInt16))
         wave_file.setframerate(self.audio_stream_generator.rate)
-        wave_file.writeframesraw(b''.join(self.frames))
+        # Only send the first 431 frames
+        wave_file.writeframesraw(b''.join(self.frames[:431]))
         wave_file.close()
         self.frames = []  # empty frames again.
-
 
 def main():
     """Main function showing example usage.

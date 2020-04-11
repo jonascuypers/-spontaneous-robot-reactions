@@ -92,7 +92,6 @@ class PepperTalks:
         # Wake up robot
         motion_service.wakeUp()
 
-
     def say_sound(self, sounds):
         if sounds:
             sentence = "I have heard " + 'and '.join([sound[0] for sound in sounds])
