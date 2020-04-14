@@ -4,25 +4,27 @@
     pepper - robot
     personbert - person
     brucedog - dog
-    speech - speech
     kitchen livingroom - location
+    dogtreat - holdingobject
 )
 (:init
     (robot-at pepper livingroom)
-    (not (robot-at pepper kitchen))
 
     (dog-at brucedog livingroom)
 
 
+    (holdingobject-at dogtreat kitchen)
+
     (dog-barking brucedog)
 
-    (not (dog-silent brucedog))
 
-    (not (human-talking speech))
+    (human-talking personbert)
 
-    (human-silent speech)
+    (not (human-silent personbert))
 
-    (speech-from speech personbert)
+    (not (robot-holds pepper dogtreat))
+
+    (dog-likes brucedog dogtreat)
 
 )
 (:goal (and

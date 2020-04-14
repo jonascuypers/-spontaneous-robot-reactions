@@ -21,7 +21,7 @@ if __name__=="__main__":
         if respond:
             goal = pytools_utils.predicate_maker("dog-silent", "dog", dog)
             kb.add_goal(goal)
-            print("planning")
+            rospy.loginfo("Goal posted")
             pytools_utils.plan_and_execute()
             print("planning done")
             kb.remove_goal(goal)

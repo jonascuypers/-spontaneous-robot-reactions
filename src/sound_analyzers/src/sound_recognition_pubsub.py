@@ -60,6 +60,9 @@ class SoundRecognition_PubSub:
             if sound[0] == 'a Dog':
                 kb.add_predicate(pytools_utils.predicate_maker("dog-barking", "dog", "brucedog"))
                 kb.add_predicate(pytools_utils.predicate_maker("dog-silent", "dog", "brucedog", is_negative=True))
+            # elif sound[0] == 'Speech':
+                # kb.add_predicate(pytools_utils.predicate_maker()
+                # kb.add_predicate(pytools_utils.predicate_maker("human-silent", "humanbert")))
 
 
 if __name__ == '__main__':

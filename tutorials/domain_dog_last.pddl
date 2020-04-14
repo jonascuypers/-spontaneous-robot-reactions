@@ -3,78 +3,46 @@
     
     ;Type definition
     (:types 
-	Robot       ;
-        Person      ;
-        Dog         ;
-        Speech      ;
-	Blender     ;
-	Location    ;
+	Robot         ;
+        Person        ;
+        Dog           ;
+	Blender       ;
+	Location      ;
+	HoldingObject ;
     )
     
     ;Predicate definition
     (:predicates
 	(robot-at ?robot - Robot ?location - Location)
 	(dog-at ?dog - Dog ?location - Location)  
-	(human-at ?human - Person ?location - Location)        
+	(human-at ?human - Person ?location - Location)  
+	(holdingobject-at ?object - HoldingObject ?location - Location)        
 	(dog-barking ?dog - Dog)
         (dog-silent ?dog - Dog)
-        (human-talking ?speech - Speech)
-	(human-silent ?speech - Speech)
-	(speech-from ?speech - Speech ?person - Person)
+        (human-talking ?human - Person)
+	(human-silent ?human - Person)
+	(robot-holds ?robot - Robot ?object - HoldingObject)
+	(dog-likes ?dog - Dog ?object - HoldingObject)
     )
     
     ;Action definition
-
-    ; giveTreat
-    ;
-    ; Turns robot hand to give dog a treat.
-    ;
-    ; @Param dog: The dog which might be barking
-    ; @Param speech: The possible speech
-    (:action giveDogTreatAction
-        :parameters (   ?dog               - Dog
-			?doglocation 	   - Location
-			?robot		   - Robot	
-                        ?speech            - Speech)
-        :precondition (and 
-                (dog-barking ?dog)
-		(dog-at ?dog ?doglocation)
-		(robot-at ?robot ?doglocation)                
-		(human-talking ?speech)
-                )
-        :effect (and
-		(not (dog-barking ?dog) )
-                (dog-silent ?dog)
-                )
-        
-    )
-
-    (:action makeSilentAction
-        :parameters (   ?dog               - Dog 
-                        ?speech            - Speech)
-        :precondition (and 
-                (dog-silent ?dog)
-		(human-talking ?speech)
-                )
-        :effect (and
-		(not (human-talking ?speech))
-		(human-silent ?speech)
-                )
-        
-    )
 
     ; sayDogSilent
     ;
     ; Say to the dog to be quiet.
     ;
     ; @Param dog: The dog which might be barking
-    ; @Param speech: The possible speech
+    ; @Param human: The possibly speaking human
     (:action sayDogSilentAction
         :parameters (   ?dog               - Dog 
-                        ?speech            - Speech)
+                        ?human             - Person
+                        ?robot             - Robot
+                        ?doglocation       - Location)
         :precondition (and 
                 (dog-barking ?dog)
-                (human-silent ?speech)
+                (human-silent ?human)
+		(dog-at ?dog ?doglocation)
+		(robot-at ?robot ?doglocation)
                 )
         :effect (and
 		(not (dog-barking ?dog) )
@@ -82,13 +50,55 @@
                 )
         
     )
+    ; giveTreat
+    ;
+    ; Turns robot hand to give dog a treat.
+    ;
+    ; @Param dog: The dog which might be barking
+    ; @Param human: The possibly speaking human
+    (:action giveDogTreatAction
+        :parameters (   ?dog               - Dog
+			?doglocation 	   - Location
+			?robot		   - Robot	
+                        ?human             - Person
+			?treat		   - HoldingObject)
+        :precondition (and 
+                (dog-barking ?dog)
+		(dog-at ?dog ?doglocation)
+		(robot-at ?robot ?doglocation)                
+		(human-talking ?human)
+		(robot-holds ?robot ?treat)
+		(dog-likes ?dog ?treat)
+                )
+        :effect (and
+		(not (dog-barking ?dog) )
+                (dog-silent ?dog)
+		(not(robot-holds ?robot ?treat))
+                )
+        
+    )
+	
+    ; RobotTakeTreat
+    ;
+    ; Pick up the treat
+    (:action RobotTakeTreatAction
+        :parameters (   ?robot          - Robot 
+                        ?treatlocation  - Location 
+			?treat		- HoldingObject)
+        :precondition (and 
+                (robot-at ?robot ?treatlocation)
+                (holdingobject-at ?treat ?treatlocation)
+                )
+        :effect (and
+		(robot-holds ?robot ?treat)
+                )
+        
+    )
+
 
     ; moveRobotAction
     ;
-    ; Say to the dog to be quiet.
-    ;
-    ; @Param dog: The dog which might be barking
-    ; @Param speech: The possible speech
+    ; Move the robot from a location to an other location
     (:action moveRobotAction
         :parameters (   ?robot             - Robot
 			?fromlocation     - Location 

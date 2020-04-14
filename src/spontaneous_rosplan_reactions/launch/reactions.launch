@@ -1,0 +1,4 @@
+<launch>
+  <node name="dog_reactions" pkg="spontaneous_rosplan_reactions" type="dog_reactions.py" />
+  <node name="move_reactions" pkg="spontaneous_rosplan_reactions" type="movement_reactions.py" />
+</launch>
