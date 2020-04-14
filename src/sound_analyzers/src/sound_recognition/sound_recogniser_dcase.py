@@ -13,6 +13,7 @@ import keras.backend.tensorflow_backend as tb
 class SoundRecogniser:
     def __init__(self):
         self.load_sound_recognition()
+        self.class_list = ['an Alarm bell ringing', 'Speech', 'a Dog', 'a Cat', 'a Vacuum_cleaner', 'Dishes', 'Frying', 'an Electric_shaver or a toothbrush', 'a Blender', 'Running_water']
 
     def define_model(self, at_layer_name='at_output', loc_layer_name='loc_output'):
         time_pooling_factor = 1
@@ -116,10 +117,8 @@ class SoundRecogniser:
         loc_probs, at_probs = self.model.predict(x_test)
         loc_probs.shape, at_probs.shape
 
-        class_list = ['an Alarm bell ringing', 'Speech', 'a Dog', 'a Cat', 'a Vacuum_cleaner', 'Dishes', 'Frying',
-                      'an Electric_shaver or a toothbrush', 'a Blender', 'Running_water']
         sounds = []
         for i, percentage in enumerate(at_probs[0]):
             if percentage > threshold:
-                sounds.append((class_list[i], percentage))
+                sounds.append((self.class_list[i], percentage))
         return sounds

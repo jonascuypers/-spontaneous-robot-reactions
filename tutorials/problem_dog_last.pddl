@@ -17,6 +17,7 @@
 
     (dog-barking brucedog)
 
+    (not (dog-silent brucedog))
 
     (human-talking personbert)
 
