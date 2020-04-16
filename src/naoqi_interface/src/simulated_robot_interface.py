@@ -58,4 +58,6 @@ class SimulatedRobotInterface:
         self.motion_service.setAngles(["LHand"], [angle], 0.2)
 
 
-SimulatedRobotInterface("127.0.0.1", "9559")
+robot_ip = rospy.get_param("robot_ip")
+port = rospy.get_param("port")
+SimulatedRobotInterface(robot_ip, port)

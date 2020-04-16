@@ -6,8 +6,14 @@
     brucedog - dog
     kitchen livingroom - location
     dogtreat - holdingobject
-    highv-lowa highv-higha lowv-lowa lowv-higha - emotionquadrant
-    general kitchenhelping - topic
+    highv-lowa - emotionquadrant
+    highv-higha - emotionquadrant
+    lowv-lowa - emotionquadrant
+    lowv-higha - emotionquadrant
+    general - topic
+    kitchenhelping - topic
+
+    
 )
 (:init
     (robot-at pepper livingroom)
@@ -18,9 +24,9 @@
 
     (holdingobject-at dogtreat kitchen)
 
-    (not (dog-barking brucedog))
+    (dog-barking brucedog)
 
-    (dog-silent brucedog)
+    (not (dog-silent brucedog))
 
     (not (human-talking personbert))
 
@@ -30,21 +36,15 @@
 
     (dog-likes brucedog dogtreat)
 
-
-
-
-
     (current-emotion personbert highv-higha)
-
 
     (accepted-to-speak general highv-lowa)
     (accepted-to-speak general lowv-lowa)
+
     (accepted-to-speak kitchenhelping highv-lowa)
     (accepted-to-speak kitchenhelping highv-higha)
 
-
 )
 (:goal (and
-    (music-played pepper)
 ))
 )
