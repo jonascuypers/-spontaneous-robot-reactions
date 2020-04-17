@@ -11,6 +11,7 @@
 )
 (:init
     (robot-at pepper livingroom)
+    (not (robot-at pepper kitchen))
 
     (dog-at brucedog livingroom)
 
@@ -26,25 +27,29 @@
 
     (human-silent personbert)
 
-    (not (robot-holds pepper dogtreat))
 
     (dog-likes brucedog dogtreat)
 
+    (not (current-emotion personbert lowv-lowa))
+    (not (current-emotion personbert highv-lowa))
+    (not (current-emotion personbert highv-higha))
+    (current-emotion personbert lowv-higha)
 
-
-
-
-    (current-emotion personbert highv-higha)
-
+    (asked-all-good personbert general)
 
     (accepted-to-speak general highv-lowa)
     (accepted-to-speak general lowv-lowa)
     (accepted-to-speak kitchenhelping highv-lowa)
     (accepted-to-speak kitchenhelping highv-higha)
 
+    (not-accepted-to-speak general highv-higha)
+    (not-accepted-to-speak general lowv-higha)
+    (not-accepted-to-speak kitchenhelping lowv-lowa)
+    (not-accepted-to-speak kitchenhelping lowv-higha)
+
+
 
 )
 (:goal (and
-    (music-played pepper)
 ))
 )

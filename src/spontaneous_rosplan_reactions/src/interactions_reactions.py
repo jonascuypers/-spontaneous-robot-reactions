@@ -12,11 +12,23 @@ class AskAllGood(act_int.SimpleAction):
     def _start(self, robot, person, emotion, location, topic):
         rospy.loginfo("Asking all good on topic: " + topic)
         if str(topic) == "general":
-            pytools_utils.tts("Hey " + person + ". Is everything ok?")
+            pytools_utils.tts("Hey " + person + ". Is everything ok or is there something I can do for you?")
         elif str(topic) == "kitchenhelping":
             pytools_utils.tts("Hey " + person + ". Should I help you with cooking?")
-        kb.add_predicate(pytools_utils.predicate_maker("asked-all-good", "topic", topic))
+        kb.add_predicate(pytools_utils.predicate_maker("asked-all-good", ["person", "topic"], [person, topic]))
         super(AskAllGood, self)._report_success()
+
+class PassiveAskAllGood(act_int.SimpleAction):
+    name = "askallgoodpassiveaction"
+
+    def _start(self, robot, person, emotion, location, topic):
+        rospy.loginfo("Asking all good on topic: " + topic)
+        if str(topic) == "general":
+            pytools_utils.tts("Hey, I will not talk to you")
+        elif str(topic) == "kitchenhelping":
+            pytools_utils.tts("Hey kitchen man, I will not talk to help")
+        kb.add_predicate(pytools_utils.predicate_maker("asked-all-good", "topic", topic))
+        super(PassiveAskAllGood, self)._report_success()
 
 
 class MusicPlaying(act_int.SimpleAction):

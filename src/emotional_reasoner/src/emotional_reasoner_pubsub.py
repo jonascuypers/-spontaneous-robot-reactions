@@ -5,17 +5,22 @@ from sound_analyzers.msg import RecognisedSounds
 from std_msgs.msg import String
 from emotional_reasoner.srv import EmotionService, EmotionServiceResponse
 import math
+import rosplan_pytools.controller.knowledge_base as kb
+import rosplan_pytools.common.utils as pytools_utils
 
 
 class EmotionalReasonerPubSub:
     def __init__(self):
         rospy.init_node('emotional_reasoner', anonymous=True)
+        kb.initialize(prefix="/rosplan_knowledge_base")
         self.valence = 0
         self.arousal = 0
         self.pub = rospy.Publisher('emotional_reasoner', Emotion, queue_size=10)
         self.service = rospy.Service('emotion_service', EmotionService, self.service_respond_emotion)
         rospy.Subscriber('voice_emotion_recognised', RecognisedSounds, self.adapt_model_speech)
         rospy.Subscriber('sound_recognised', RecognisedSounds, self.adapt_model_sounds)
+        self.numbers_to_kb_emotion = [[-1, -1, "lowv-lowa"], [1, -1, "highv-lowa"],
+                                      [1, 1, "highv-higha"], [-1, 1, "lowv-higha"]]
 
         self.map_emotion_to_quantity = {
             "Neutral": {"valence": 0, "arousal": 0},
@@ -25,13 +30,13 @@ class EmotionalReasonerPubSub:
             "Fear": {"valence": -0.25, "arousal": -0.25},
         }
         self.map_sound_to_quantity = {
-            "an Alarm bell ringing": {"valence": 0.5, "arousal": -0.3},
+            "an Alarm bell ringing": {"valence": 0.5, "arousal": 0.3},
             "Speech": {"valence": 0.0, "arousal": 0.0},
             "a Dog": {"valence": -0.5, "arousal": 0.4},
             "a Cat": {"valence": -0.5, "arousal": -0.4},
-            "Dishes": {"valence": -0.5, "arousal": -0.5},
+            "Dishes": {"valence": -0.2, "arousal": -0.3},
             "Frying": {"valence": 0.5, "arousal": 0.4},
-            "an Electric_shaver or a toothbrush": {"valence": 0, "arousal": 0},
+            "an Electric_shaver or a toothbrush": {"valence": 0.2, "arousal": 0.},
             "a Blender": {"valence": -0.3, "arousal": 0.3},
             "Running_water": {"valence": 0, "arousal": 0},
             "a Vacuum_cleaner": {"valence": 0, "arousal": 0}
@@ -76,12 +81,19 @@ class EmotionalReasonerPubSub:
             emotion = Emotion()
             self.valence = self.valence - 0.1*self.valence
             self.arousal = self.arousal - 0.1 * self.arousal
-
-            if abs(self.valence) > 1:
-                self.valence = -(1/self.valence)*self.valence
             emotion.arousal = self.arousal
             emotion.valence = self.valence
             self.pub.publish(emotion)
+            sign = lambda x: -1 if x < 0 else 1
+            for emotion in self.numbers_to_kb_emotion:
+                if sign(self.valence) == emotion[0] and sign(self.arousal) == emotion[1]:
+                    pred = pytools_utils.predicate_maker("current-emotion", ["person", "emotionquadrant"],
+                                                         ["personbert", emotion[2]])
+                    kb.add_predicate(pred)
+                else:
+                    pred = pytools_utils.predicate_maker("current-emotion", ["person", "emotionquadrant"],
+                                                         ["personbert", emotion[2]], True)
+                    kb.add_predicate(pred)
             rate.sleep()
 
 
