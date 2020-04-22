@@ -1,0 +1,3 @@
+<launch>
+    <node name="sound_knowledge_deriving" pkg="knowledge_deriving" type="sound_recognition_knowledge_deriver.py" />
+</launch>

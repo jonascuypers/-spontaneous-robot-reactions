@@ -11,9 +11,11 @@ from keras import backend as K
 import keras.backend.tensorflow_backend as tb
 
 class SoundRecogniser:
+    class_list = ['an Alarm bell ringing', 'Speech', 'a Dog', 'a Cat', 'a Vacuum_cleaner', 'Dishes', 'Frying',
+                  'an Electric_shaver or a toothbrush', 'a Blender', 'Running_water']
+
     def __init__(self):
         self.load_sound_recognition()
-        self.class_list = ['an Alarm bell ringing', 'Speech', 'a Dog', 'a Cat', 'a Vacuum_cleaner', 'Dishes', 'Frying', 'an Electric_shaver or a toothbrush', 'a Blender', 'Running_water']
 
     def define_model(self, at_layer_name='at_output', loc_layer_name='loc_output'):
         time_pooling_factor = 1

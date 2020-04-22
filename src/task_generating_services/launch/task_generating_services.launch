@@ -2,4 +2,5 @@
   <node name="dog_task_generator" pkg="task_generating_services" type="dog_task_generator.py" />
   <node name="music_task_generator" pkg="task_generating_services" type="music_task_generator.py" />
   <node name="loud_noises_task_generator" pkg="task_generating_services" type="loud_noises_task_generator.py" />
+  <node name="kitchen_helping_task_generator" pkg="task_generating_services" type="kitchen_helping_task_generator.py" />
 </launch>

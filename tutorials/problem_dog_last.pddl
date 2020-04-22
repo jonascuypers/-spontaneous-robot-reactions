@@ -10,14 +10,13 @@
     general kitchenhelping - topic
 )
 (:init
-    (robot-at pepper livingroom)
-    (not (robot-at pepper kitchen))
+    (not (robot-at pepper livingroom))
+    (robot-at pepper kitchen)
 
     (dog-at brucedog livingroom)
 
     (human-at personbert kitchen)
 
-    (holdingobject-at dogtreat kitchen)
 
     (not (dog-barking brucedog))
 
@@ -30,10 +29,10 @@
 
     (dog-likes brucedog dogtreat)
 
-    (not (current-emotion personbert lowv-lowa))
-    (not (current-emotion personbert highv-lowa))
+    (current-emotion personbert lowv-lowa)
     (not (current-emotion personbert highv-higha))
-    (current-emotion personbert lowv-higha)
+    (not (current-emotion personbert lowv-higha))
+    (not (current-emotion personbert highv-lowa))
 
     (asked-all-good personbert general)
 
@@ -41,13 +40,11 @@
     (accepted-to-speak general lowv-lowa)
     (accepted-to-speak kitchenhelping highv-lowa)
     (accepted-to-speak kitchenhelping highv-higha)
+    (accepted-to-speak kitchenhelping lowv-lowa)
+    (accepted-to-speak kitchenhelping lowv-higha)
 
     (not-accepted-to-speak general highv-higha)
     (not-accepted-to-speak general lowv-higha)
-    (not-accepted-to-speak kitchenhelping lowv-lowa)
-    (not-accepted-to-speak kitchenhelping lowv-higha)
-
-
 
 )
 (:goal (and
