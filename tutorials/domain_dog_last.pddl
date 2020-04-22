@@ -40,6 +40,8 @@
 	(music-played ?robot - Robot)
 
 	(person-cooking ?person - Person)
+	
+	(loud-volume ?location - Location)
     )
     
     ;Action definition
