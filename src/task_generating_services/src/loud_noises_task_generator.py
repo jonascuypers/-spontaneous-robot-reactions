@@ -14,7 +14,7 @@ if __name__=="__main__":
         for loud_noise_pred in loud_noise_predicates:
             if not loud_noise_pred.is_negative:
                 respond = True
-        if respond:
+        if respond and len(kb.list_goals()) == 0:
             goal = pytools_utils.predicate_maker("asked-all-good", ["person", "subject"], ["personbert", "general"])
             kb.add_goal(goal)
             rospy.loginfo("Goal posted")

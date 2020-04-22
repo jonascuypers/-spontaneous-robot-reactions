@@ -17,7 +17,7 @@ if __name__=="__main__":
                 respond = True
                 dog = barking_predicate.values[0].value
 
-        if respond:
+        if respond and len(kb.list_goals()) == 0:
             goal = pytools_utils.predicate_maker("dog-silent", "dog", dog)
             kb.add_goal(goal)
             rospy.loginfo("Goal posted")

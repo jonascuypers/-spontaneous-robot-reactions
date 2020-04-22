@@ -27,7 +27,7 @@ class PassiveAskAllGood(act_int.SimpleAction):
             pytools_utils.tts("Hey, I will not talk to you")
         elif str(topic) == "kitchenhelping":
             pytools_utils.tts("Hey kitchen man, I will not talk to help")
-        kb.add_predicate(pytools_utils.predicate_maker("asked-all-good", "topic", topic))
+        kb.add_predicate(pytools_utils.predicate_maker("asked-all-good", ["person", "topic"], [person, topic]))
         super(PassiveAskAllGood, self)._report_success()
 
 
