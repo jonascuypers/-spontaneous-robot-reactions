@@ -5,6 +5,7 @@ import numpy as np
 import rosplan_pytools.common.utils as pytools_utils
 from std_msgs.msg import String
 
+
 class LoudSoundsKnowledgeDeriving:
     def __init__(self):
         kb.initialize(prefix="/rosplan_knowledge_base")

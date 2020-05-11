@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 from sound_interface.streamgenerators.RobotAudioStream import RobotAudioStream
 from sound_interface.streamhandlers.StreamRecorder import StreamRecorder
-from naoqi import ALProxy
 import rospy
 
 from std_msgs.msg import String
@@ -9,42 +8,31 @@ from sound_interface.streamgenerators.MircrophoneStream import MicrophoneStream
 import qi
 import time
 
-# from audio_analysis.wav_to_sound import Soundrecognizer
 robot_ip = "127.0.0.1"
 port = 9559
 
 
 class SoundRecorderPublisher:
     def __init__(self):
+        """
+        This node will record audio clips of 10 seconds
+        """
         rospy.init_node('sound_recorder', anonymous=True)
-        # create the publisher
+        # Create the publisher
         self.pub = rospy.Publisher('sound_recorder', String, queue_size=10)
-        # self.path = "/home/jonas/recorded_sounds/"
-        self.path = rospy.get_param("recording_path")
+        # The path where to record audio to
+        self.path = "/home/jonas/recorded_sounds/"
+        # self.path = rospy.get_param("recording_path")
         # Create the sound recogniser
         rospy.loginfo("Created recorder")
 
-    def startup_procedure(self):
-        tts = ALProxy("ALTextToSpeech", robot_ip, port)
-        tts.setLanguage("English")
-        tts.post.say("Hello, recognise sounds!")
-        motion = ALProxy("ALMotion", robot_ip, port)
-        motion.moveInit()
-        motion.setStiffnesses("Body", 1.0)
-        motion.post.moveTo(1, 0, -0.5)
-        motion.post.setStiffnesses("Body", 0)
-        tts.say("I'm walking")
-
-
-    def rb(self):
-        app = qi.Application(["SoundProcessingModule", "--qi-url=" + "tcp://10.10.131.126:9559"])
-        app.start()
-        session = app.session
-        posture_service = session.service("ALRobotPosture")
-        posture_service.goToPosture("StandInit", 1.0)
-
-    def start_recording_bot(self):
-        app = qi.Application(["SoundProcessingModule", "--qi-url=" + "tcp://10.10.131.126:9559"])
+    def start_recording_bot(self, ip, port):
+        """
+        Method for recording from the mic of the robot
+        @param ip: ip adress of the robot
+        @param port: the port to connect to the robot
+        """
+        app = qi.Application(["SoundProcessingModule", "--qi-url=" + "tcp://" + ip + ":" + str(port)])
         app.start()
         session = app.session
         al_audio_device = session.service("ALAudioDevice")
@@ -60,13 +48,20 @@ class SoundRecorderPublisher:
                 recorder.output_file_path = self.path + "output_mic" + str(i) + ".wav"
 
     def start_recording_pc(self):
-        with MicrophoneStream(7,
+        """
+        Start recording using the mic of the PC. Takes samples of 10 seconds
+        """
+        # Either 8 or 7 depending on config
+        with MicrophoneStream(8,
                               1024) as stream:  # input device index can be determined with the list_input_devices method.
+            # The amount of recordings before starting back at 1
+            max_i = 10
             i = 0
             recorder = StreamRecorder(stream, self.path + "output_mic" + str(i) + ".wav")
             sleep_duration = rospy.Rate(0.1)
             while not rospy.is_shutdown():
                 i += 1
+                i %= max_i
                 recorder.start()
                 sleep_duration.sleep()
                 recorder.stop()
@@ -74,31 +69,4 @@ class SoundRecorderPublisher:
                 recorder.output_file_path = self.path + "output_mic" + str(i) + ".wav"
 
 
-class PepperTalks:
-    def __init__(self, robot_ip, port):
-        self.tts = ALProxy("ALTextToSpeech", robot_ip, port)
-        self.tts.setLanguage("English")
-        # Get the services ALMotion & ALRobotPosture.
-
-        session = qi.Session()
-        try:
-            session.connect("tcp://" + robot_ip + ":" + str(port))
-        except RuntimeError:
-            print ("Can't connect to Naoqi at ip \"" + robot_ip + "\" on port " + str(port) + ".\n"
-                                                                                                  "Please check your script arguments. Run with -h option for help.")
-        motion_service = session.service("ALMotion")
-        posture_service = session.service("ALRobotPosture")
-
-        # Wake up robot
-        motion_service.wakeUp()
-
-    def say_sound(self, sounds):
-        if sounds:
-            sentence = "I have heard " + 'and '.join([sound[0] for sound in sounds])
-            self.tts.post.say(sentence)
-
-
 SoundRecorderPublisher().start_recording_pc()
-
-
-

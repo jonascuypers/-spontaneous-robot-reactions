@@ -10,15 +10,20 @@ class SoundRecognitionKnowledgeDeriving:
     def __init__(self):
         kb.initialize(prefix="/rosplan_knowledge_base")
         rospy.init_node('sound_recognition_dcase', anonymous=True)
+        # Sleep to make sure parameter is already pushed
+        rospy.sleep(5.)
+        try:
+            self.recognisable_sounds = rospy.get_param('recognisable_sounds')
+        except KeyError:
+            # a default if the list is not published
+            self.recognisable_sounds = ['an Alarm bell ringing', 'Speech', 'a Dog', 'a Cat', 'a Vacuum_cleaner', 'Dishes', 'Frying',
+                  'an Electric_shaver or a toothbrush', 'a Blender', 'Running_water']
+        self.recognisable_sounds.append("kitchen_noise")
+        nr_of_recognizable_sounds = len(self.recognisable_sounds)
         # We keep a matrix to know when to set an event in the knowledge base
         # If in memory_length times recognizing at least minimum_for_recognized are a certain sound
         # This sound will be published in the knowledge base
         # This makes up for instabilities in recognition
-        # Sleep to make sure parameter is already pushed
-        rospy.sleep(5.)
-        self.recognisable_sounds = rospy.get_param('recognisable_sounds')
-        self.recognisable_sounds.append("kitchen_noise")
-        nr_of_recognizable_sounds = len(self.recognisable_sounds)
         memory_length = 7
         self.minimum_for_recognized = 3
         self.recognised_sounds_matrix = np.zeros((nr_of_recognizable_sounds, memory_length))
