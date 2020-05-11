@@ -24,27 +24,31 @@ class EmotionalReasonerPubSub:
 
         self.map_emotion_to_quantity = {
             "Neutral": {"valence": 0, "arousal": 0},
-            "Happy": {"valence": 0.7, "arousal": 0.2},
-            "Sad": {"valence": -0.7, "arousal": -0.2},
-            "Angry": {"valence": -0.25, "arousal": 0.25},
-            "Fear": {"valence": -0.25, "arousal": -0.25},
+            "Happy": {"valence": 0.5, "arousal": 0.2},
+            "Sad": {"valence": -0.5, "arousal": -0.2},
+            "Angry": {"valence": -0.5, "arousal": 0.4},
+            "Fear": {"valence": -0.30, "arousal": 0.3},
         }
         self.map_sound_to_quantity = {
-            "an Alarm bell ringing": {"valence": 0.5, "arousal": 0.3},
+            "an Alarm bell ringing": {"valence": -0.295, "arousal": 0.387},
             "Speech": {"valence": 0.0, "arousal": 0.0},
-            "a Dog": {"valence": -0.5, "arousal": 0.4},
-            "a Cat": {"valence": -0.5, "arousal": -0.4},
-            "Dishes": {"valence": -0.2, "arousal": -0.3},
-            "Frying": {"valence": 0.5, "arousal": 0.4},
-            "an Electric_shaver or a toothbrush": {"valence": 0.2, "arousal": 0.},
-            "a Blender": {"valence": -0.3, "arousal": 0.3},
-            "Running_water": {"valence": 0, "arousal": 0},
+            "a Dog": {"valence": -0.023, "arousal": 0.182},
+            "a Cat": {"valence": 0.535, "arousal": 0.067},
+            "Dishes": {"valence": -0.192, "arousal": -0.285},
+            "Frying": {"valence": 0.0, "arousal": 0.0},
+            "an Electric_shaver or a toothbrush": {"valence": -0.437, "arousal": 0.178},
+            "a Blender": {"valence": -0.668, "arousal": 0.27},
+            "Running_water": {"valence": -0.137, "arousal": -0.045},
             "a Vacuum_cleaner": {"valence": 0, "arousal": 0}
         }
 
     def adapt_model_speech(self, data):
+        """
+        Speech with an emotion has been recognised, now the model is adapted
+        @param data: The incoming message containing the emotions in speech
+        """
         data = data.sounds
-        # find max emotion
+        # Find the emotion with the highest expected value
         max_prob, max_emotion = 0, ""
         for emotion_prob in data:
             if emotion_prob.probability > max_prob:
@@ -54,17 +58,24 @@ class EmotionalReasonerPubSub:
         amounts = self.map_emotion_to_quantity[max_emotion]
         print max_emotion
         self.add_vectors(amounts["valence"], amounts["arousal"])
-        self.pub.publish(Emotion(self.valence, self.arousal))
 
     def adapt_model_sounds(self, data):
+        """
+        Sounds have been recognised, now the model is adapted
+        @param data: The incoming message containing the recognised sounds
+        """
         data = data.sounds
         for elem in data:
             sound_emotion = self.map_sound_to_quantity[elem.sound]
+            # adapt the model
             self.add_vectors(sound_emotion["valence"], sound_emotion["arousal"])
-        rospy.Rate(0.5).sleep()
-        self.pub.publish(Emotion(self.valence, self.arousal))
 
     def add_vectors(self, valence, arousal):
+        """
+        Add the new emotion to the already existing emotion
+        @param valence: The valence which must be added
+        @param arousal: The arousal which must be added
+        """
         self.valence += valence
         self.arousal += arousal
         vector_size = math.sqrt(math.pow(self.arousal, 2) + math.pow(self.valence, 2))
@@ -73,6 +84,7 @@ class EmotionalReasonerPubSub:
             self.arousal = self.arousal/vector_size
 
     def service_respond_emotion(self, arg):
+        # This class is also a ROS Service, so respond with the valence and arousal when necessary
         return EmotionServiceResponse(self.valence, self.arousal)
 
     def publisher(self):
