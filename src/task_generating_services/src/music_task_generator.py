@@ -1,8 +1,6 @@
 #!/usr/bin/env python
-import rospy
 from sound_analyzers.msg import RecognisedSounds
 import rosplan_pytools.controller.knowledge_base as kb
-import rosplan_pytools.controller.planning_system as ps
 import rosplan_pytools.common.utils as pytools_utils
 import rospy
 

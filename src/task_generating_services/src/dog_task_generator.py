@@ -16,7 +16,6 @@ if __name__=="__main__":
             if not barking_predicate.is_negative:
                 respond = True
                 dog = barking_predicate.values[0].value
-
         if respond and len(kb.list_goals()) == 0:
             goal = pytools_utils.predicate_maker("dog-silent", "dog", dog)
             kb.add_goal(goal)

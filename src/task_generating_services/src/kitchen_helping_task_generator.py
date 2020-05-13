@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 import rosplan_pytools.controller.knowledge_base as kb
-import rosplan_pytools.controller.planning_system as ps
 import rospy
-
 import rosplan_pytools.common.utils as pytools_utils
 
-if __name__=="__main__":
+if __name__ == "__main__":
     rospy.init_node("kitchen_helping_task_generator")
 
     kb.initialize(prefix="/rosplan_knowledge_base")

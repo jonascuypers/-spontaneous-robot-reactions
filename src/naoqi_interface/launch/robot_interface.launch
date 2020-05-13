@@ -2,4 +2,5 @@
   <param name="robot_ip" value="127.0.0.1"/>
   <param name="port" value="9559" />
   <node name="naoqi_interface" pkg="naoqi_interface" type="simulated_robot_interface.py" />
+  <node name="tts_interface" pkg="naoqi_interface" type="tts_interface.py" />
 </launch>

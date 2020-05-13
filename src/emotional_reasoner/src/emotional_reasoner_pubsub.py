@@ -84,28 +84,54 @@ class EmotionalReasonerPubSub:
             self.arousal = self.arousal/vector_size
 
     def service_respond_emotion(self, arg):
-        # This class is also a ROS Service, so respond with the valence and arousal when necessary
+        """
+        This class is also a ROS Service, so respond with the valence and arousal when necessary
+        """
         return EmotionServiceResponse(self.valence, self.arousal)
 
+    def publish_as_param(self):
+        """
+        Publish the valence and arousal to the parameter server (Used as continuous store of data)
+        """
+        emotion = {"valence": self.valence, "arousal":self.arousal}
+        rospy.set_param('emotion', emotion)
+
+    def publish_as_knowledge(self):
+        """
+        Publish the quadrant to the knowledge base
+        """
+        sign = lambda x: -1 if x < 0 else 1
+        for emotion in self.numbers_to_kb_emotion:
+            if sign(self.valence) == emotion[0] and sign(self.arousal) == emotion[1]:
+                pred = pytools_utils.predicate_maker("current-emotion", ["person", "emotionquadrant"],
+                                                     ["personbert", emotion[2]])
+                kb.add_predicate(pred)
+            else:
+                pred = pytools_utils.predicate_maker("current-emotion", ["person", "emotionquadrant"],
+                                                     ["personbert", emotion[2]], True)
+                kb.add_predicate(pred)
+
     def publisher(self):
+        """
+        The publisher will publish the valence and arousal each 10 seconds to the:
+        Knowledge Base
+        Parameter Server
+        Normal publish
+        """
         rate = rospy.Rate(0.1)  # 0.1hz
         while not rospy.is_shutdown():
             emotion = Emotion()
-            self.valence = self.valence - 0.1*self.valence
-            self.arousal = self.arousal - 0.1 * self.arousal
+            # update the emotion
+            self.valence = 0.9 * self.valence
+            self.arousal = 0.9 * self.arousal
             emotion.arousal = self.arousal
             emotion.valence = self.valence
+            # Publish for the visualisation
             self.pub.publish(emotion)
-            sign = lambda x: -1 if x < 0 else 1
-            for emotion in self.numbers_to_kb_emotion:
-                if sign(self.valence) == emotion[0] and sign(self.arousal) == emotion[1]:
-                    pred = pytools_utils.predicate_maker("current-emotion", ["person", "emotionquadrant"],
-                                                         ["personbert", emotion[2]])
-                    kb.add_predicate(pred)
-                else:
-                    pred = pytools_utils.predicate_maker("current-emotion", ["person", "emotionquadrant"],
-                                                         ["personbert", emotion[2]], True)
-                    kb.add_predicate(pred)
+            # Publish for using in knowledge base
+            self.publish_as_knowledge()
+            # Publish on continuous knowledge base
+            self.publish_as_param()
             rate.sleep()
 
 

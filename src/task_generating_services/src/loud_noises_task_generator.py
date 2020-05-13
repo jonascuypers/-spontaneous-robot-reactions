@@ -2,7 +2,6 @@
 import rosplan_pytools.controller.knowledge_base as kb
 import rospy
 import rosplan_pytools.common.utils as pytools_utils
-from std_msgs.msg import String
 
 if __name__=="__main__":
     rospy.init_node("loud_noise_task_generator")
