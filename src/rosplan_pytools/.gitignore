@@ -1,0 +1,8 @@
+.ropeproject
+.kdev4
+*.kdev4
+*.pyc
+*.swp
+*~
+.idea/*
+
