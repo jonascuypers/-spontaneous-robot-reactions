@@ -15,6 +15,7 @@ class EmotionalReasonerPubSub:
         kb.initialize(prefix="/rosplan_knowledge_base")
         self.valence = 0
         self.arousal = 0
+        self.publish_as_param()
         self.pub = rospy.Publisher('emotional_reasoner', Emotion, queue_size=10)
         self.service = rospy.Service('emotion_service', EmotionService, self.service_respond_emotion)
         rospy.Subscriber('voice_emotion_recognised', RecognisedSounds, self.adapt_model_speech)
@@ -93,7 +94,7 @@ class EmotionalReasonerPubSub:
         """
         Publish the valence and arousal to the parameter server (Used as continuous store of data)
         """
-        emotion = {"valence": self.valence, "arousal":self.arousal}
+        emotion = {"valence": self.valence, "arousal": self.arousal}
         rospy.set_param('emotion', emotion)
 
     def publish_as_knowledge(self):
