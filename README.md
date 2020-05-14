@@ -20,6 +20,7 @@ The master thesis uses of [ROS kinetic]() and the code is written in [Python 2.7
 - Make sure the parameter *recoring_path* is set to a existing directory
 
 ## Usage
-Start the Webots 8 simulator with a Nao bot
+Start the Webots 8 simulator. The file with the appartment and NAO is located here:
+ *src/initialization/appartment_NOA.wbt*
 
 For running all nodes run *src/initialisation/launch_all.launch*

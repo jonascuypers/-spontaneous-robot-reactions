@@ -1,0 +1,542 @@
+#VRML_SIM V8.6 utf8
+WorldInfo {
+  info [
+    "Sample of how the indoor objects can be placed"
+  ]
+  basicTimeStep 16
+}
+Viewpoint {
+  orientation 0.21730062 0.9264338 0.3074099 4.1460931
+  position -1.0448098 4.6022186 0.96084246
+}
+Background {
+}
+DEF FLOOR Solid {
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          specularColor 0.4 0.4 0.4
+        }
+        texture ImageTexture {
+          url [
+            "textures/tiles.jpg"
+          ]
+        }
+        textureTransform TextureTransform {
+          scale 8 8
+        }
+      }
+      geometry ElevationGrid {
+        xDimension 5
+        xSpacing 1.65
+        zDimension 7
+        zSpacing 1.65
+      }
+    }
+  ]
+  boundingObject Transform {
+    translation 3.3 0 4.96
+    children [
+      Plane {
+        size 6.6 9.9
+      }
+    ]
+  }
+  locked TRUE
+}
+DEF ROOF Solid {
+  translation 0 2.4 9.9
+  rotation 1 0 0 3.14159
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          specularColor 0.4 0.4 0.4
+        }
+        texture ImageTexture {
+          url [
+            "textures/roughcast.jpg"
+          ]
+        }
+        textureTransform TextureTransform {
+          scale 8 8
+        }
+      }
+      geometry ElevationGrid {
+        xDimension 5
+        xSpacing 1.65
+        zDimension 7
+        zSpacing 1.65
+      }
+    }
+  ]
+  boundingObject Transform {
+    translation 3.3 0 4.96
+    children [
+      Plane {
+        size 6.6 9.9
+      }
+    ]
+  }
+  locked TRUE
+}
+Laptop {
+  hidden position_0_0 6.78232e-06
+  translation 0.56000005 0.70943139 5.15
+  rotation -0.00065045419 0.99999958 -0.00065197115 -1.5708004
+}
+Wall {
+  translation 0.65 0 0
+  size 1 2.4 0.3
+}
+Window {
+  translation 1.65 0 0
+  size 1 2.4 0.3
+}
+Wall {
+  translation 4.3 0 0
+  size 4.3 2.4 0.3
+}
+Wall {
+  translation 2.3 0 9.9
+  size 4.3 2.4 0.3
+}
+Wall {
+  translation 5.95 0 9.9
+  size 1 2.4 0.3
+}
+Door {
+  translation 4.95 0 9.9
+  rotation 0 1 0 3.14159
+  size 1 2.4 0.3
+  canBeOpen FALSE
+  doorHandle DoorLever {
+    hasStaticParent TRUE
+  }
+}
+Wall {
+  translation 0 0 3.8
+  rotation 0 1 0 1.5708
+  size 7.9 2.4 0.3
+}
+Wall {
+  translation 0 0 9.4
+  rotation 0 1 0 1.5708
+  size 1.3 2.4 0.3
+}
+Window {
+  translation 0 0 8.25
+  rotation 0 1 0 1.5708
+  size 1 2.4 0.3
+}
+Wall {
+  translation 6.6 0 9.4
+  rotation 0 1 0 1.5708
+  size 1.3 2.4 0.3
+}
+Door {
+  translation 6.6 0 8.25
+  rotation 0 1 0 -1.5708
+  size 1 2.4 0.3
+  canBeOpen FALSE
+  doorHandle DoorLever {
+    rotation -0.0012868889 0.99999917 0 0
+    hasStaticParent TRUE
+  }
+}
+Wall {
+  translation 6.6 0 3.8
+  rotation 0 1 0 1.5708
+  size 7.9 2.4 0.3
+}
+Wall {
+  translation 1.8 0 3.3
+  size 3.3 2.4 0.3
+  wallTextureUrl [
+    "textures/red_brick_wall.jpg"
+  ]
+}
+CeilingLight {
+  translation 2.47061 2.4 1.3341
+  pointLightAmbientIntensity 0.8
+  pointLightIntensity 0.4
+  pointLightCastShadows TRUE
+}
+CeilingLight {
+  translation 2.44317 2.4 7.10107
+  pointLightAmbientIntensity 0.8
+  pointLightIntensity 0.4
+  pointLightCastShadows TRUE
+}
+FloorLight {
+  translation 0.745582 0 4.00427
+  pointLightAmbientIntensity 0.8
+  pointLightIntensity 0.4
+}
+Fridge {
+  hidden position_0_0 -7.43224e-09
+  hidden position_0_1 3.22423e-08
+  translation 0.5 0 0.52
+}
+Cabinet {
+  hidden translation_6 -0.21 0.12997928 0.68
+  hidden rotation_6 1 0 4.1837379e-13 9.319161e-6
+  hidden position_6_0 4.14245e-05
+  hidden translation_14 -0.21 0.34497928 0.68
+  hidden rotation_14 1 0 -1.2213101e-12 9.3191577e-6
+  hidden position_14_0 4.14244e-05
+  hidden translation_22 -0.21 0.55497928 0.68
+  hidden rotation_22 1 0 -1.7191233e-12 9.3191575e-6
+  hidden position_22_0 4.14244e-05
+  translation 0.15 0 1.31
+  rotation 0 1 0 1.5708
+  depth 0.68
+  outerThickness 0.02
+  rowsHeights [
+    0.22, 0.21, 0.21
+  ]
+  columnsWidths [
+    0.42, 0.42
+  ]
+  layout [
+    "Drawer (1, 1, 1, 1, 1.5)"
+    "Drawer (1, 2, 1, 1, 1.5)"
+    "Drawer (1, 3, 1, 1, 1.5)"
+    "Shelf  (1, 2, 2, 0)"
+    "Shelf  (1, 3, 2, 0)"
+    "Shelf (1, 1, 0, 3)"
+  ]
+  handle CabinetHandle {
+    handleLength 0.09
+    handleRadius 0.008
+  }
+}
+Cabinet {
+  hidden translation_6 -0.21 0.33998252 0.5
+  hidden rotation_6 0.99828069 6.6203177e-11 -0.058614507 6.7079743e-6
+  hidden position_6_0 -1.04367e-05
+  hidden translation_7 -1.1379703e-11 0 2.1807386e-6
+  hidden translation_10 0.21 0.33998252 0.5
+  hidden rotation_10 -0.99827414 8.2753421e-11 -0.058725921 -6.7080189e-6
+  hidden position_10_0 1.04388e-05
+  hidden translation_11 1.1384699e-11 0 2.1811974e-6
+  translation 0.150001 1.12 1.31
+  rotation 0 -1 0 4.71239
+  outerThickness 0.02
+  rowsHeights [
+    0.22, 0.21, 0.21
+  ]
+  columnsWidths [
+    0.42, 0.42
+  ]
+  layout [
+    "RightSidedDoor (1, 1, 1, 3, 1.5)"
+    "LeftSidedDoor (2, 1, 1, 3, 1.5)"
+    "Shelf  (1, 2, 2, 0)"
+    "Shelf  (1, 3, 2, 0)"
+    "Shelf (1, 1, 0, 3)"
+  ]
+  handle CabinetHandle {
+    translation -0.2 0 0
+    handleLength 0.09
+    handleRadius 0.008
+  }
+}
+Cabinet {
+  hidden translation_6 0.21 0.33997965 0.68
+  hidden rotation_6 -0.99909596 7.2022913e-11 -0.042511837 -9.2489152e-6
+  hidden position_6_0 1.43957e-05
+  hidden translation_7 2.1650959e-11 0 3.0079814e-6
+  translation 0.15 0 2.19
+  rotation 0 -1 0 4.71239
+  depth 0.68
+  outerThickness 0.02
+  rowsHeights [
+    0.22, 0.21, 0.21
+  ]
+  columnsWidths [
+    0.42, 0.42
+  ]
+  layout [
+    "LeftSidedDoor (2, 1, 1, 3, 1.5)"
+    "Shelf  (1, 2, 2, 0)"
+    "Shelf  (1, 3, 2, 0)"
+    "Shelf (1, 1, 0, 3)"
+  ]
+  handle CabinetHandle {
+    translation 0.2 0 0
+    handleLength 0.09
+    handleRadius 0.008
+  }
+}
+Oven {
+  hidden position_0_0 1.89343e-19
+  translation 0.58 0.34 2.85
+}
+Worktop {
+  translation 0.5 0.71 1.31
+  rotation 0 1 0 1.5708
+  size 0.88 0.06 0.7
+}
+Worktop {
+  translation 0.807 0.71 1.97
+  rotation 0 1 0 1.5708
+  size 0.44 0.06 0.086
+}
+Worktop {
+  translation 0.272 0.71 1.97
+  rotation 0 1 0 1.5708
+  size 0.44 0.06 0.244
+}
+Worktop {
+  translation 0.5 0.71 2.63
+  rotation 0 1 0 1.5708
+  size 0.88 0.06 0.7
+}
+Sink {
+  translation 0.48 0.715 1.97
+  rotation 0 1 0 4.71239
+}
+HotPlate {
+  translation 0.5 0.71 2.85
+  rotation 0 1 0 4.71239
+}
+Can {
+  translation 0.632793 0.84106567 0.566328
+  rotation -0.85728608 0.44774578 -0.25413442 -3.6367378e-16
+}
+Table {
+  translation 4.94438 0 1.07424
+  rotation 0 1 0 1.5708
+}
+Chair {
+  translation 5.41278 -0.002244528 1.46063
+  rotation 2.043634e-17 1 -2.1249065e-18 3.1415
+  physics Physics {
+    centerOfMass [
+      0 0.45 0
+    ]
+  }
+}
+Chair {
+  translation 4.44435 -0.002244528 0.642495
+  rotation 0.7030035 0.70722815 0.074929458 -4.5226222e-17
+  physics Physics {
+    centerOfMass [
+      0 0.45 0
+    ]
+  }
+}
+Chair {
+  translation 4.48748 -0.002244528 1.39428
+  rotation 0.28449822 0.95864422 0.0078754471 -3.5126234e-17
+  physics Physics {
+    centerOfMass [
+      0 0.45 0
+    ]
+  }
+}
+Chair {
+  translation 5.38086 -0.002244528 0.706899
+  rotation 2.901285e-17 1 1.7288031e-17 3.1415
+  physics Physics {
+    centerOfMass [
+      0 0.45 0
+    ]
+  }
+}
+FruitBowl {
+  translation 4.88063 0.73978418 0.715471
+  rotation -8.7197807e-5 -1 3.4962898e-5 0.944615
+}
+Orange {
+  translation 4.8703012 0.79967162 0.77522881
+  rotation -0.61398683 0.041501089 -0.78822448 0.0079126711
+}
+Orange {
+  translation 4.8049194 0.79966571 0.6995636
+  rotation -0.4748938 0.57922724 -0.66254939 0.0054273466
+}
+Apple {
+  translation 4.9564811 0.79966648 0.72261402
+  rotation 0.73434092 0.36482672 -0.57240273 -0.0083622043
+}
+Apple {
+  translation 4.8934799 0.79965955 0.63550942
+  rotation 0.94974366 0.27205043 -0.15484037 -0.010315901
+}
+Desk {
+  translation 0.512574 0 5.12497
+  rotation 0 1 0 1.5708
+}
+WoodenChair {
+  translation 0.90000003 -0.00082722115 5.15
+  rotation -3.0680382e-5 1 -3.0680495e-5 -1.5708
+  physics Physics {
+    centerOfMass [
+      0 0.45 0
+    ]
+  }
+}
+Book {
+  translation 0.59221901 0.71988228 4.69758
+  rotation -0.7394982 0.47602343 0.47596649 1.868139
+}
+Table {
+  translation 2.55544 0.02 7.16302
+  size 1.2 0.53 0.8
+}
+Armchair {
+  translation 2.3878836 0 5.0583695
+  rotation 0 -1 0 1.5205118
+}
+Sofa {
+  translation 0.804228 0 7.05325
+}
+Sofa {
+  translation 2.49729 0 8.95734
+  rotation 0 1 0 1.5708
+}
+Carpet {
+  translation 2.55076 -0.015 7.14218
+}
+BunchOfSunFlowers {
+  translation 3.9144 0 9.05979
+}
+Book {
+  translation 0.59613102 0.73985221 4.69173
+  rotation -0.93684424 0.24734534 0.2472714 1.6360677
+}
+Can {
+  translation 2.74188 0.61106567 7.22627
+  rotation 1.4424171e-16 -1 2.1521871e-16 1.29491
+}
+Can {
+  translation 2.7233 0.61106567 7.34994
+  rotation -0.95215323 0.0089518332 -0.30548991 -2.1649442e-16
+}
+Can {
+  translation 2.8744 0.61106567 7.20688
+  rotation 1.9578177e-16 1 1.4764131e-16 1.32183
+}
+Cabinet {
+  translation 6.4326 0 3.46807
+  rotation 0 1 0 4.71239
+  depth 0.4
+  outerThickness 0.02
+  rowsHeights [
+    0.52, 0.44, 0.44, 0.44, 0.44
+  ]
+  columnsWidths [
+    0.96
+  ]
+  layout [
+    "Shelf  (1, 2, 1, 0)"
+    "Shelf  (1, 3, 1, 0)"
+    "Shelf  (1, 4, 1, 0)"
+    "Shelf  (1, 5, 1, 0)"
+  ]
+}
+Book {
+  translation 6.1509201 1.5292437 3.0223162
+  rotation -1 2.6747798e-5 -3.5260529e-6 0.24865811
+}
+Book {
+  translation 6.1575902 1.5290039 3.0446933
+  rotation -1 4.1368216e-5 -8.8120633e-6 0.26541876
+}
+Book {
+  translation 6.1641702 1.5287841 3.0668132
+  rotation -1 9.466281e-6 -7.4779212e-6 0.2786687
+}
+Book {
+  translation 6.1582102 1.5281362 3.0912039
+  rotation -1 -4.3422996e-6 -4.7241786e-6 0.3117082
+}
+Book {
+  translation 6.1623402 1.5277988 3.1138851
+  rotation -1 3.4017507e-6 -4.8778026e-6 0.3267017
+}
+PottedTree {
+  translation 6.08049 0 4.51701
+}
+PortraitPainting {
+  translation 2.47 1.6 9.73
+  rotation 0 1 0 3.14159
+}
+LandscapePainting {
+  translation 4.92523 1.62868 0.184484
+}
+Television {
+  translation 2.15471 1.5596 3.43287
+}
+Nao {
+  hidden position_0_0 2.56576e-16
+  hidden position2_0_0 -1.32269e-08
+  hidden position_0_1 1.09207e-06
+  hidden position2_0_1 -0.0087
+  hidden position_0_2 1.09207e-06
+  hidden position2_0_2 0.0087
+  hidden position_0_3 -4.11789e-07
+  hidden position_0_4 -4.11789e-07
+  hidden rotation_18 -5.46035e-7 0.00012552449 -0.99999999 0.0087000001
+  hidden position_18_0 1.70069e-07
+  hidden position_19_0 0.0349066
+  hidden rotation_20 0 0 1 0.0349066
+  hidden position_20_0 6.43083e-08
+  hidden position_21_0 -2.21547e-11
+  hidden position_21_1 -2.21476e-11
+  hidden position_21_2 7.57617e-11
+  hidden rotation_22 0 1 0 0.96
+  hidden position_22_0 4.08488e-11
+  hidden rotation_23 0 1 0 0.96
+  hidden position_23_0 1.8736e-11
+  hidden rotation_24 0 1 0 0.96
+  hidden rotation_25 0 1 0 0.96
+  hidden position_25_0 4.08428e-11
+  hidden rotation_26 0 1 0 0.96
+  hidden position_26_0 1.87339e-11
+  hidden rotation_27 0 1 0 0.96
+  hidden position_28_0 1.11192e-11
+  hidden rotation_29 0 -1 0 0.96
+  hidden rotation_30 5.46035e-7 0.00012552449 0.99999999 0.0087000001
+  hidden position_30_0 -1.70069e-07
+  hidden position_31_0 -0.0349066
+  hidden rotation_32 0 0 -1 0.0349066
+  hidden position_32_0 -6.43083e-08
+  hidden position_33_0 -2.21494e-11
+  hidden position_33_1 -2.21485e-11
+  hidden position_33_2 7.57667e-11
+  hidden rotation_34 0 1 0 0.96
+  hidden position_34_0 4.08522e-11
+  hidden rotation_35 0 1 0 0.96
+  hidden position_35_0 1.87369e-11
+  hidden rotation_36 0 1 0 0.96
+  hidden rotation_37 0 1 0 0.96
+  hidden position_37_0 4.086e-11
+  hidden rotation_38 0 1 0 0.96
+  hidden position_38_0 1.87308e-11
+  hidden rotation_39 0 1 0 0.96
+  hidden position_40_0 1.11237e-11
+  hidden rotation_41 0 -1 0 0.96
+  hidden position_42_0 5.30472e-07
+  hidden position_43_0 -9.90646e-07
+  hidden position_44_0 -1.00162e-06
+  hidden position_45_0 -1.02894e-06
+  hidden position_46_0 5.16093e-07
+  hidden translation_48 0.019999996 -0.0070000015 -0.040974742
+  hidden rotation_48 -1.6296653e-8 -1.6233225e-11 1 -3.1415853
+  hidden position_52_0 -5.30472e-07
+  hidden position_53_0 -9.90646e-07
+  hidden position_54_0 -1.00162e-06
+  hidden position_55_0 -1.02894e-06
+  hidden position_56_0 -5.16093e-07
+  hidden translation_58 0.019999996 0.0070000015 -0.040974742
+  hidden rotation_58 -1.6296654e-8 1.6269836e-11 1 -3.1415853
+  translation 4 0.33311368 2
+  rotation -0.57729516 -0.57742264 -0.577333 2.0943433
+  controller "naoqisim"
+  controllerArgs "9559"
+  synchronization FALSE
+}
