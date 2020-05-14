@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<launch>
-
-	<!-- ROSPlan -->
-	<include file="$(find rosplan_planning_system)/launch/interfaced_planning_system.launch" >
-		<arg name="domain_path"		value="/home/jonas/master_ws/tutorials/robocure_field_trials_v1_domain.pddl" />
-		<arg name="problem_path"	value="/home/jonas/master_ws/tutorials/robocure_simple_problem.pddl" />
-	</include>
-</launch>
