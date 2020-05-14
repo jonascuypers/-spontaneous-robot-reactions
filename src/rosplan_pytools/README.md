@@ -1,3 +1,7 @@
+This package is a fork of rosplan_pytools. Some values have been changed as they where not compatible with the version 
+of rosplan used in this thesis. The utils have also been adapted to create predicates.
+
+[ROSPlan pytools](https://github.com/dgerod/rosplan_pytools)
 # rosplan_pytools
 An easier way to hook into [ROSPlan](https://github.com/KCL-Planning/ROSPlan). This repository is a derivative work of [rosplan_interface](https://github.com/yochan-lab/rosplan_interface).
 
