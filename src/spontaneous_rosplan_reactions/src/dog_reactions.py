@@ -14,8 +14,7 @@ class TreatGiving(act_int.SimpleAction):
         rospy.loginfo("GIVING FOOD TO DOG")
         self.pub.publish(String("grasp off"))
         rospy.sleep(2)
-        kb.add_predicate(pytools_utils.predicate_maker("dog-barking", "dog", dog, True))
-        kb.add_predicate(pytools_utils.predicate_maker("dog-silent", "dog", dog))
+        kb.add_predicate(pytools_utils.predicate_maker("dog-interaction", ["robot", "dog"], [robot,  dog]))
         kb.add_predicate(pytools_utils.predicate_maker("robot-holds", ["robot", "holdingobject"], [robot, treat], True))
         super(TreatGiving, self)._report_success()
 
@@ -27,8 +26,7 @@ class SayDogSilent(act_int.SimpleAction):
     def _start(self, dog, human, robot, doglocation):
         rospy.loginfo("GIVING FOOD TO DOG")
         self.pub.publish(String("Hey " + str(dog) + ", be silent!"))
-        kb.add_predicate(pytools_utils.predicate_maker("dog-barking", "dog", dog, True))
-        kb.add_predicate(pytools_utils.predicate_maker("dog-silent", "dog", dog))
+        kb.add_predicate(pytools_utils.predicate_maker("dog-interaction", ["robot", "dog"], [robot,  dog]))
         super(SayDogSilent, self)._report_success()
 
 

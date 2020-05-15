@@ -22,7 +22,6 @@
     (object-at ?object - HoldingObject ?location - Location)
 
     (dog-barking ?dog - Dog)
-    (dog-silent ?dog - Dog)
 
     (human-talking ?human - Person)
 	(human-silent ?human - Person)
@@ -32,11 +31,12 @@
 	(dog-likes ?dog - Dog ?object - HoldingObject)
 
 	(current-emotion ?person - Person ?emotion - EmotionQuadrant)
-	(asked-all-good   ?person - Person ?topic - Topic)
-	
+
 	(accepted-to-speak ?topic - Topic ?emotion - EmotionQuadrant)
 	(not-accepted-to-speak ?topic - Topic ?emotion - EmotionQuadrant)
-	
+
+	(dog-interaction ?robot - Robot ?dog - Dog)
+	(asked-all-good   ?person - Person ?topic - Topic)
 	(music-played ?robot - Robot)
 
 	(person-cooking ?person - Person)
@@ -64,8 +64,7 @@
 		(robot-at ?robot ?doglocation)
                 )
         :effect (and
-		(not (dog-barking ?dog) )
-                (dog-silent ?dog)
+		(dog-interaction ?robot ?dog)
                 )
         
     )
@@ -90,8 +89,7 @@
 		(dog-likes ?dog ?treat)
                 )
         :effect (and
-		(not (dog-barking ?dog) )
-                (dog-silent ?dog)
+		(dog-interaction ?robot ?dog)
 		(not(robot-holds ?robot ?treat))
                 )
         

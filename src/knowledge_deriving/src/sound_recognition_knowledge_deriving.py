@@ -58,8 +58,6 @@ class SoundRecognitionKnowledgeDeriving:
         if sound == "a Dog":
             kb.add_predicate(pytools_utils.predicate_maker("dog-barking", "dog", "brucedog",
                                                            is_negative=not sound_recognised))
-            kb.add_predicate(pytools_utils.predicate_maker("dog-silent", "dog", "brucedog",
-                                                           is_negative=sound_recognised))
         elif sound == "Speech":
             kb.add_predicate(pytools_utils.predicate_maker("human-talking", "Person", "personbert",
                                                            is_negative=not sound_recognised))
