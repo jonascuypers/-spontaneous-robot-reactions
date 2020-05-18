@@ -39,11 +39,10 @@ class MusicPlaying(act_int.SimpleAction):
 
     def _start(self, robot, person, location):
         emotions = rospy.get_param('emotion')
-        rospy.loginfo("valence:" + str(emotions.valence) + "arousal: " + str(emotions.arousal))
         sign = lambda x: -1 if x < 0 else 1
         suggested_style = 0
         for style in self.music_map:
-            if sign(emotions.valence) == style[0] and sign(emotions.arousal) == style[1]:
+            if sign(emotions["valence"]) == style[0] and sign(emotions["arousal"]) == style[1]:
                 suggested_style = style[2]
 
         self.pub.publish(String("Hey {}. Should I play some {} music?".format(person, suggested_style)))
