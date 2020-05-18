@@ -11,7 +11,6 @@
 )
 (:init
     (robot-at pepper livingroom)
-    (not (robot-at pepper kitchen))
 
     (dog-at brucedog livingroom)
 
@@ -21,12 +20,9 @@
 
     (not (dog-barking brucedog))
 
-    (dog-silent brucedog)
-
     (not (human-talking personbert))
 
     (human-silent personbert)
-
 
     (dog-likes brucedog dogtreat)
 
@@ -46,13 +42,7 @@
     (not-accepted-to-speak general highv-higha)
     (not-accepted-to-speak general lowv-higha)
 
-
-    (person-cooking personbert)
-
-    (not (loud-volume livingroom))
-
 )
 (:goal (and
-    (asked-all-good personbert kitchenhelping)
 ))
 )
