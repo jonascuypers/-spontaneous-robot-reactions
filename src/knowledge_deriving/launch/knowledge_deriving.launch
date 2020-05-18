@@ -1,4 +1,5 @@
 <launch>
     <node name="sound_knowledge_deriving" pkg="knowledge_deriving" type="sound_recognition_knowledge_deriving.py" />
     <node name="loud_sounds_knowledge_deriving" pkg="knowledge_deriving" type="loud_sounds_knowledge_deriving.py" />
+    <node name="hectic_knowledge_deriving" pkg="knowledge_deriving" type="hectic_knowledge_deriving.py" />
 </launch>

@@ -54,7 +54,6 @@ class SoundRecognitionKnowledgeDeriving:
         """
         Publish a single heard sound to the knowledge base
         """
-        # Maybe only when not dispatching?
         if sound == "a Dog":
             kb.add_predicate(pytools_utils.predicate_maker("dog-barking", "dog", "brucedog",
                                                            is_negative=not sound_recognised))

@@ -12,7 +12,7 @@ class LoudSoundsKnowledgeDeriving:
         rospy.init_node('loud_sounds_knowledge_deriving', anonymous=True)
         rospy.Subscriber('sound_volume', String, self.sound_volume_detected)
         self.count_high_volume = 0
-        self.high_volume_limit = 10000
+        self.high_volume_limit = 60
         self.launch_helper_limit = 3
         self.loud_noise = False
         self.noise_place = ""

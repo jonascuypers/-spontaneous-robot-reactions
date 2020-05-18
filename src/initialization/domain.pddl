@@ -42,6 +42,8 @@
 	(person-cooking ?person - Person)
 	
 	(loud-volume ?location - Location)
+	(hectic-environment ?location - Location)
+
     )
     
     ;Action definition
