@@ -5,11 +5,12 @@ import rospy
 import time
 import math
 from std_msgs.msg import String
+import rosplan_pytools.controller.knowledge_base as kb
 
 # This dictionary maps the movements from a place to another place
 movements = {
-    "livingroom": {"kitchen": {"names": ["LShoulderPitch", "RShoulderRoll", "HeadYaw"], "angles": [math.pi/2, -math.pi/2, -math.pi/2], "speed": 0.2}},
-    "kitchen": {"livingroom": {"names": ["LShoulderPitch", "RShoulderRoll", "HeadYaw"], "angles": [0, 0, 0], "speed": 0.2}}
+    "kitchen": {"names": ["LShoulderPitch", "RShoulderRoll", "HeadYaw"], "angles": [math.pi/2, -math.pi/2, -math.pi/2], "speed": 0.2},
+    "livingroom": {"names": ["LShoulderPitch", "RShoulderRoll", "HeadYaw"], "angles": [0, 0, 0], "speed": 0.2}
 }
 
 
@@ -26,6 +27,8 @@ class SimulatedRobotInterface:
         self.motion_service.wakeUp()
         self.posture_service.goToPosture("StandInit", 0.5)
         time.sleep(2)
+        kb.initialize(prefix="/rosplan_knowledge_base")
+        self.go_to_init_location()
         rospy.Subscriber('robot_command', String, self.handle_robot_command)
         rospy.spin()
 
@@ -50,13 +53,23 @@ class SimulatedRobotInterface:
         """
         Move the robot from the living room to the kitchen
         """
-        movement = movements[from_loc][to_loc]
+        movement = movements[to_loc]
         self.motion_service.setAngles(movement["names"], movement["angles"], movement["speed"])
 
     def grasp(self, loosen=False):
         angle = int(loosen)
         self.motion_service.setAngles(["LHand"], [angle], 0.2)
 
+    def go_to_init_location(self):
+        """
+        Query the Knowledge base for finding the initial location, and move to this position
+        """
+        robot_loc = kb.list_predicates("robot-at")
+        real_bot_location = "kitchen"
+        for bot_location in robot_loc:
+            if not bot_location.is_negative:
+                real_bot_location = bot_location.values[1].value
+        self.move_robot(None, real_bot_location)
 
 robot_ip = rospy.get_param("robot_ip")
 port = rospy.get_param("port")

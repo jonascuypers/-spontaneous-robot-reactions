@@ -11,9 +11,9 @@ class HecticSoundKnowledgeGenerator:
         rospy.init_node('hectic_knowledge_deriving', anonymous=True)
         rospy.Subscriber('sound_recognised', RecognisedSounds, self.sound_recognised)
         # min number of times at least one sound was heard
-        self.min_sound_history_required = 5
+        self.min_sound_history_required = 7
         # min number of different sounds
-        self.min_diff_sounds_required = 3
+        self.min_diff_sounds_required = 4
         # the sliding window
         self.sounds_history = [0 for i in range(14)]
         self.location_bot = ""

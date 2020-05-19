@@ -69,5 +69,6 @@ def tts(sentence):
 
 
 rospy.init_node('tts', anonymous=True)
+tts(String("I'm awake now"))
 rospy.Subscriber('tts', String, tts)
 rospy.spin()

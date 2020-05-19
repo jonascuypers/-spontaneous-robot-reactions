@@ -60,16 +60,13 @@
 	<include file="$(find spontaneous_rosplan_reactions)/launch/reactions.launch"/>
 
 
-	<node name="tts_interface" pkg="naoqi_interface" type="tts_interface.py" />
-
-	<!-- Naoqi interface -->
-	<!-- <include file="$(find naoqi_interface)/launch/robot_interface.launch"/> -->
-
-
 	<!-- Task generating services	-->	
 	<include file="$(find task_generating_services)/launch/task_generating_services.launch" />
 
 	<!-- KnowledgeDeriving -->
 	<include file="$(find knowledge_deriving)/launch/knowledge_deriving.launch" />
+
+	<!-- Naoqi interface -->
+	 <include file="$(find naoqi_interface)/launch/robot_interface.launch"/>
 
 </launch>
