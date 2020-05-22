@@ -66,4 +66,5 @@ class SoundRecognitionKnowledgeDeriving:
             kb.add_predicate(pytools_utils.predicate_maker("person-cooking", "Person", "personbert",
                                                            is_negative=not sound_recognised))
 
+
 SoundRecognitionKnowledgeDeriving()

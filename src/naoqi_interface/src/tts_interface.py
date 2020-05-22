@@ -7,6 +7,9 @@ import math
 
 
 def calculate_rate(emotion):
+    """
+    Calculate at which rate the robot must talk
+    """
     rate = 100
     rate_range = 20
     rate_change = 0
@@ -20,6 +23,9 @@ def calculate_rate(emotion):
 
 
 def calculate_pitch(emotion):
+    """
+    Calculate with what amount of pitch the robot must talk
+    """
     pitch_range = 20
     pitch_change = 0
     sign = ""
@@ -35,6 +41,9 @@ def calculate_pitch(emotion):
 
 
 def calculate_volume(emotion):
+    """
+    Calculate the volume the robot must speak at
+    """
     volume_range = 6
     volume_change = 0
     sign = "+"
@@ -50,10 +59,10 @@ def calculate_volume(emotion):
 def tts(sentence):
     """
     For the calculation of the changes, view the master thesis
+    For documentation on how the tts parameters work, view AWS Polly SSML
     """
     sentence = sentence.data
     emotion = rospy.get_param('emotion')
-    print emotion
     emotion['norm'] = math.sqrt(math.pow(emotion['arousal'], 2) + math.pow(emotion['valence'], 2))
     args = '{"text_type":"ssml"}'
     client = actionlib.SimpleActionClient('tts', SpeechAction)
@@ -68,6 +77,7 @@ def tts(sentence):
     client.wait_for_result()
 
 
+# Start the TTS node
 rospy.init_node('tts', anonymous=True)
 tts(String("I'm awake now"))
 rospy.Subscriber('tts', String, tts)

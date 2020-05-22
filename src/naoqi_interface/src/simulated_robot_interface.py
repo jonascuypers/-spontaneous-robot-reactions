@@ -57,6 +57,9 @@ class SimulatedRobotInterface:
         self.motion_service.setAngles(movement["names"], movement["angles"], movement["speed"])
 
     def grasp(self, loosen=False):
+        """
+        Close or open the robot's hand
+        """
         angle = int(loosen)
         self.motion_service.setAngles(["LHand"], [angle], 0.2)
 
@@ -71,6 +74,8 @@ class SimulatedRobotInterface:
                 real_bot_location = bot_location.values[1].value
         self.move_robot(None, real_bot_location)
 
+
+# Get the parameters set in the launch file
 robot_ip = rospy.get_param("robot_ip")
 port = rospy.get_param("port")
 SimulatedRobotInterface(robot_ip, port)

@@ -11,8 +11,13 @@ class TreatGiving(act_int.SimpleAction):
     pub = rospy.Publisher('robot_command', String, queue_size=10)
 
     def _start(self, dog, doglocation, robot, human, treat):
+        """
+        Do the give robot treat action.
+        The arguments are all arguments in the PDDL action
+        """
         rospy.loginfo("GIVING FOOD TO DOG")
         self.pub.publish(String("grasp off"))
+        # Wait until closed
         rospy.sleep(2)
         kb.add_predicate(pytools_utils.predicate_maker("dog-interaction", ["robot", "dog"], [robot,  dog]))
         kb.add_predicate(pytools_utils.predicate_maker("robot-holds", ["robot", "holdingobject"], [robot, treat], True))
@@ -24,7 +29,9 @@ class SayDogSilent(act_int.SimpleAction):
     pub = rospy.Publisher('tts', String, queue_size=10)
 
     def _start(self, dog, human, robot, doglocation):
-        rospy.loginfo("GIVING FOOD TO DOG")
+        """
+        Tell the dog to be silent
+        """
         self.pub.publish(String("Hey " + str(dog) + ", be silent!"))
         kb.add_predicate(pytools_utils.predicate_maker("dog-interaction", ["robot", "dog"], [robot,  dog]))
         super(SayDogSilent, self)._report_success()

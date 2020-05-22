@@ -11,10 +11,14 @@ class MoveRobot(act_int.SimpleAction):
     pub = rospy.Publisher('robot_command', String, queue_size=10)
 
     def _start(self, robot, fromlocation, tolocation):
+        """
+        Move the robot from a location, to a location
+        """
         rospy.loginfo("MOVING ROBOT")
         # The messages are used for creating the emotional model
 
         movement = " ".join(["move", fromlocation, tolocation])
+        # Use the Naoqi interface
         self.pub.publish(String(movement))
         rospy.sleep(2)
         rospy.loginfo("Published :" + movement)
@@ -28,6 +32,9 @@ class PickupTreat(act_int.SimpleAction):
     name = "robottaketreataction"
 
     def _start(self, robot, treatlocation, treat):
+        """
+        Grasp the treat
+        """
         rospy.loginfo("Picking up treat")
         # The messages are used for creating the emotional model
         self.pub = rospy.Publisher('robot_command', String, queue_size=10)
