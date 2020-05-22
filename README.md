@@ -1,7 +1,8 @@
 # Master Thesis: spontaneous robot reactions 
 ## Introduction
-This repository contains the source code accompanying my master theses. 
-The software was created to cooperate with a Pepper robot, but this was not tested. 
+This repository contains the source code accompanying my master thesis. 
+The software was created to cooperate with a Pepper robot, but this was not tested due to COVID-19. The software does work 
+with the NAO bot in simulation. 
 
 The master thesis uses of [ROS kinetic](https://wiki.ros.org/kinetic/Installation/Ubuntu) and the code is written in [Python 2.7](https://www.python.org/download/releases/2.7/).
 
