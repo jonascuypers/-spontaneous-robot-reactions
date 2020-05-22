@@ -20,5 +20,7 @@ if __name__=="__main__":
             pytools_utils.plan_and_execute()
             print("planning done")
             kb.remove_goal(goal)
+            goal.is_negative = True
+            kb.add_predicate(goal)
             rospy.sleep(60*5)
         rospy.sleep(5.)
