@@ -44,6 +44,8 @@
 	(loud-volume ?location - Location)
 	(hectic-environment ?location - Location)
 
+    (doorbell-ringing ?location - Location)
+    (opened-door ?robot - Robot)
     )
     
     ;Action definition
@@ -195,7 +197,22 @@
                 )
     )
 
-    
+    ; OpenDoorAction
+    ;
+    ; Ask the human to open the door
+
+    (:action OpenDoorAction
+        :parameters (
+        ?robot             - Robot
+        ?location          - Location
+	)
+        :precondition (and
+        (doorbell-ringing ?location)
+        )
+        :effect (and
+		(opened-door ?robot)
+        )
+    )
 )
 
 

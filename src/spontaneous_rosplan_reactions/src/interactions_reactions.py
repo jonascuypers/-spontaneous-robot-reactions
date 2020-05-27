@@ -61,6 +61,19 @@ class MusicPlaying(act_int.SimpleAction):
         super(MusicPlaying, self)._report_success()
 
 
+class OpenDoor(act_int.SimpleAction):
+    name = "opendooraction"
+    pub = rospy.Publisher('tts', String, queue_size=10)
+
+    def _start(self, robot, location):
+        """
+        Suggest to open the door.
+        """
+        self.pub.publish(String("Should I open the door?"))
+        kb.add_predicate(pytools_utils.predicate_maker("opened-door", "robot", robot))
+        super(OpenDoor, self)._report_success()
+
+
 if __name__ == "__main__":
     rospy.init_node("talking_reactions")
     act_int.initialize_actions()
