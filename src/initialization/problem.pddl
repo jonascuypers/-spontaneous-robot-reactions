@@ -22,6 +22,8 @@
 
     (not (human-talking personbert))
 
+    (not (person-cooking personbert))
+
     (human-silent personbert)
 
     (dog-likes brucedog dogtreat)
@@ -32,15 +34,15 @@
     (not (current-emotion personbert highv-lowa))
 
 
-    (accepted-to-speak general highv-lowa)
     (accepted-to-speak general lowv-lowa)
+    (accepted-to-speak general lowv-higha)
     (accepted-to-speak kitchenhelping highv-lowa)
     (accepted-to-speak kitchenhelping highv-higha)
-    (accepted-to-speak kitchenhelping lowv-lowa)
-    (accepted-to-speak kitchenhelping lowv-higha)
 
+    (not-accepted-to-speak general highv-lowa)
     (not-accepted-to-speak general highv-higha)
-    (not-accepted-to-speak general lowv-higha)
+    (not-accepted-to-speak kitchenhelping lowv-lowa)
+    (not-accepted-to-speak kitchenhelping lowv-higha)
 
 )
 (:goal (and
