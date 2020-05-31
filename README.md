@@ -18,10 +18,15 @@ The master thesis uses of [ROS kinetic](https://wiki.ros.org/kinetic/Installatio
 - Clone [ROSPlan](https://github.com/KCL-Planning/ROSPlan) as a submodule 
 - Install [ROSPlan](https://github.com/KCL-Planning/ROSPlan)
 - Install [Polly TTS](https://github.com/aws-robotics/tts-ros1)
-- Make sure the parameter *recoring_path* is set to a existing directory
+- Make sure the parameter *recoring_path* in the launch file is set to an existing directory
+- run *catkin build*
+- run *source ~/master_ws/devel/setup.bash*
 
 ## Usage
-Start the Webots 8 simulator. The file with the appartment and NAO is located here:
- *src/initialization/appartment_NOA.wbt*
+Start the Webots 8 simulator. The file with the appartment and NAO is located in:
 
-For running all nodes run *roslaunch src/initialisation/launch_all.launch*
+*src/initialization/appartment_NOA.wbt*
+
+For running all nodes run:
+ 
+ *roslaunch src/initialisation/launch_all.launch*
