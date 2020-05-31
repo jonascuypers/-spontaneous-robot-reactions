@@ -82,9 +82,10 @@ DEF ROOF Solid {
   locked TRUE
 }
 Laptop {
-  hidden position_0_0 6.78232e-06
+  hidden position_0_0 1.00677e-05
+  hidden translation_1 0.0145 0.12999985 0.10000038
   translation 0.56000005 0.70943139 5.15
-  rotation -0.00065045419 0.99999958 -0.00065197115 -1.5708004
+  rotation -0.00065045303 0.99999958 -0.00065196997 -1.5708004
 }
 Wall {
   translation 0.65 0 0
@@ -175,20 +176,23 @@ FloorLight {
   pointLightIntensity 0.4
 }
 Fridge {
-  hidden position_0_0 -7.43224e-09
-  hidden position_0_1 3.22423e-08
+  hidden position_0_0 -1.48645e-08
+  hidden position_0_1 6.44845e-08
   translation 0.5 0 0.52
 }
 Cabinet {
-  hidden translation_6 -0.21 0.12997928 0.68
-  hidden rotation_6 1 0 4.1837379e-13 9.319161e-6
-  hidden position_6_0 4.14245e-05
-  hidden translation_14 -0.21 0.34497928 0.68
-  hidden rotation_14 1 0 -1.2213101e-12 9.3191577e-6
-  hidden position_14_0 4.14244e-05
-  hidden translation_22 -0.21 0.55497928 0.68
-  hidden rotation_22 1 0 -1.7191233e-12 9.3191575e-6
-  hidden position_22_0 4.14244e-05
+  hidden translation_6 -0.21 0.12995856 0.68
+  hidden rotation_6 1 0 -7.2258956e-14 1.8638276e-5
+  hidden position_6_0 8.28497e-05
+  hidden translation_7 0 0 4.1425167e-5
+  hidden translation_14 -0.21 0.34495856 0.68
+  hidden rotation_14 1 0 -9.4027563e-13 1.8638271e-5
+  hidden position_14_0 8.28495e-05
+  hidden translation_15 0 0 4.1425074e-5
+  hidden translation_22 -0.21 0.55495856 0.68
+  hidden rotation_22 -1 5.9566847e-12 1.4326365e-12 -1.8638271e-5
+  hidden position_22_0 8.28495e-05
+  hidden translation_23 0 0 4.1425069e-5
   translation 0.15 0 1.31
   rotation 0 1 0 1.5708
   depth 0.68
@@ -213,14 +217,14 @@ Cabinet {
   }
 }
 Cabinet {
-  hidden translation_6 -0.21 0.33998252 0.5
-  hidden rotation_6 0.99828069 6.6203177e-11 -0.058614507 6.7079743e-6
-  hidden position_6_0 -1.04367e-05
-  hidden translation_7 -1.1379703e-11 0 2.1807386e-6
-  hidden translation_10 0.21 0.33998252 0.5
-  hidden rotation_10 -0.99827414 8.2753421e-11 -0.058725921 -6.7080189e-6
-  hidden position_10_0 1.04388e-05
-  hidden translation_11 1.1384699e-11 0 2.1811974e-6
+  hidden translation_6 -0.21 0.33996504 0.5
+  hidden rotation_6 0.99828069 4.9652312e-11 -0.058614466 1.3415968e-5
+  hidden position_6_0 -2.08734e-05
+  hidden translation_7 -4.5519283e-11 0 4.3614837e-6
+  hidden translation_10 0.21 0.33996504 0.5
+  hidden rotation_10 -0.99827415 4.9651974e-11 -0.058725795 -1.3416059e-5
+  hidden position_10_0 2.08777e-05
+  hidden translation_11 4.5538628e-11 0 4.3624011e-6
   translation 0.150001 1.12 1.31
   rotation 0 -1 0 4.71239
   outerThickness 0.02
@@ -244,10 +248,10 @@ Cabinet {
   }
 }
 Cabinet {
-  hidden translation_6 0.21 0.33997965 0.68
-  hidden rotation_6 -0.99909596 7.2022913e-11 -0.042511837 -9.2489152e-6
-  hidden position_6_0 1.43957e-05
-  hidden translation_7 2.1650959e-11 0 3.0079814e-6
+  hidden translation_6 0.21 0.3399593 0.68
+  hidden rotation_6 -0.99909597 7.2022777e-11 -0.042511773 -1.8497865e-5
+  hidden position_6_0 2.87914e-05
+  hidden translation_7 8.6604252e-11 0 6.0159728e-6
   translation 0.15 0 2.19
   rotation 0 -1 0 4.71239
   depth 0.68
@@ -271,7 +275,7 @@ Cabinet {
   }
 }
 Oven {
-  hidden position_0_0 1.89343e-19
+  hidden position_0_0 2.84e-19
   translation 0.58 0.34 2.85
 }
 Worktop {
@@ -304,7 +308,7 @@ HotPlate {
 }
 Can {
   translation 0.632793 0.84106567 0.566328
-  rotation -0.85728608 0.44774578 -0.25413442 -3.6367378e-16
+  rotation -0.89957139 0.28838157 -0.32803564 -5.8416614e-16
 }
 Table {
   translation 4.94438 0 1.07424
@@ -312,7 +316,7 @@ Table {
 }
 Chair {
   translation 5.41278 -0.002244528 1.46063
-  rotation 2.043634e-17 1 -2.1249065e-18 3.1415
+  rotation 2.2441986e-17 1 -9.8969377e-19 3.1415
   physics Physics {
     centerOfMass [
       0 0.45 0
@@ -321,7 +325,7 @@ Chair {
 }
 Chair {
   translation 4.44435 -0.002244528 0.642495
-  rotation 0.7030035 0.70722815 0.074929458 -4.5226222e-17
+  rotation 0.59555306 0.80046031 0.067674617 -5.6206133e-17
   physics Physics {
     centerOfMass [
       0 0.45 0
@@ -330,7 +334,7 @@ Chair {
 }
 Chair {
   translation 4.48748 -0.002244528 1.39428
-  rotation 0.28449822 0.95864422 0.0078754471 -3.5126234e-17
+  rotation -0.15031726 0.98603956 0.071628934 -4.9241187e-17
   physics Physics {
     centerOfMass [
       0 0.45 0
@@ -339,7 +343,7 @@ Chair {
 }
 Chair {
   translation 5.38086 -0.002244528 0.706899
-  rotation 2.901285e-17 1 1.7288031e-17 3.1415
+  rotation 3.1744846e-17 1 2.2345392e-17 3.1415
   physics Physics {
     centerOfMass [
       0 0.45 0
@@ -348,31 +352,31 @@ Chair {
 }
 FruitBowl {
   translation 4.88063 0.73978418 0.715471
-  rotation -8.7197807e-5 -1 3.4962898e-5 0.944615
+  rotation -8.8460359e-5 -1 3.5060626e-5 0.944615
 }
 Orange {
-  translation 4.8703012 0.79967162 0.77522881
-  rotation -0.61398683 0.041501089 -0.78822448 0.0079126711
+  translation 4.87047 0.79967167 0.77509656
+  rotation -0.61483964 0.038544425 -0.78770968 0.012213355
 }
 Orange {
-  translation 4.8049194 0.79966571 0.6995636
-  rotation -0.4748938 0.57922724 -0.66254939 0.0054273466
+  translation 4.8050168 0.79966572 0.69949309
+  rotation -0.47489019 0.58171501 -0.66036881 0.0084035632
 }
 Apple {
-  translation 4.9564811 0.79966648 0.72261402
-  rotation 0.73434092 0.36482672 -0.57240273 -0.0083622043
+  translation 4.9563661 0.79966644 0.72245484
+  rotation 0.71135639 0.44959616 -0.5402179 -0.013122866
 }
 Apple {
-  translation 4.8934799 0.79965955 0.63550942
-  rotation 0.94974366 0.27205043 -0.15484037 -0.010315901
+  translation 4.8934799 0.79965946 0.63550936
+  rotation 0.94976295 0.27202055 -0.15477456 -0.010316829
 }
 Desk {
   translation 0.512574 0 5.12497
   rotation 0 1 0 1.5708
 }
 WoodenChair {
-  translation 0.90000003 -0.00082722115 5.15
-  rotation -3.0680382e-5 1 -3.0680495e-5 -1.5708
+  translation 0.90000003 -0.0008272212 5.15
+  rotation -3.0680385e-5 1 -3.0680497e-5 -1.5708
   physics Physics {
     centerOfMass [
       0 0.45 0
@@ -381,7 +385,7 @@ WoodenChair {
 }
 Book {
   translation 0.59221901 0.71988228 4.69758
-  rotation -0.7394982 0.47602343 0.47596649 1.868139
+  rotation -0.7394982 0.47602344 0.4759665 1.868139
 }
 Table {
   translation 2.55544 0.02 7.16302
@@ -410,15 +414,15 @@ Book {
 }
 Can {
   translation 2.74188 0.61106567 7.22627
-  rotation 1.4424171e-16 -1 2.1521871e-16 1.29491
+  rotation 4.9848091e-17 -1 1.6322619e-16 1.29491
 }
 Can {
   translation 2.7233 0.61106567 7.34994
-  rotation -0.95215323 0.0089518332 -0.30548991 -2.1649442e-16
+  rotation -0.99852573 0.05276517 0.012735792 -3.9946087e-16
 }
 Can {
   translation 2.8744 0.61106567 7.20688
-  rotation 1.9578177e-16 1 1.4764131e-16 1.32183
+  rotation -1.0447501e-16 1 1.1719489e-17 1.32183
 }
 Cabinet {
   translation 6.4326 0 3.46807
@@ -439,24 +443,24 @@ Cabinet {
   ]
 }
 Book {
-  translation 6.1509201 1.5292437 3.0223162
-  rotation -1 2.6747798e-5 -3.5260529e-6 0.24865811
+  translation 6.1509201 1.5292449 3.0223179
+  rotation -1 3.8492272e-5 -5.5160846e-6 0.24865728
 }
 Book {
-  translation 6.1575902 1.5290039 3.0446933
-  rotation -1 4.1368216e-5 -8.8120633e-6 0.26541876
+  translation 6.1575903 1.5290047 3.0446951
+  rotation -1 5.7432569e-5 -1.2814298e-5 0.26541163
 }
 Book {
-  translation 6.1641702 1.5287841 3.0668132
-  rotation -1 9.466281e-6 -7.4779212e-6 0.2786687
+  translation 6.1641703 1.5287844 3.0668152
+  rotation -1 1.4713558e-5 -1.0893089e-5 0.27865826
 }
 Book {
-  translation 6.1582102 1.5281362 3.0912039
-  rotation -1 -4.3422996e-6 -4.7241786e-6 0.3117082
+  translation 6.1582103 1.5281368 3.0912061
+  rotation -1 -5.042347e-6 -6.8538515e-6 0.31169955
 }
 Book {
-  translation 6.1623402 1.5277988 3.1138851
-  rotation -1 3.4017507e-6 -4.8778026e-6 0.3267017
+  translation 6.1623403 1.5278002 3.1138874
+  rotation -1 4.3798478e-6 -6.8556666e-6 0.32669676
 }
 PottedTree {
   translation 6.08049 0 4.51701
@@ -472,70 +476,70 @@ Television {
   translation 2.15471 1.5596 3.43287
 }
 Nao {
-  hidden position_0_0 2.56576e-16
-  hidden position2_0_0 -1.32269e-08
-  hidden position_0_1 1.09207e-06
+  hidden position_0_0 8.78881e-16
+  hidden position2_0_0 -2.64718e-08
+  hidden position_0_1 2.18374e-06
   hidden position2_0_1 -0.0087
-  hidden position_0_2 1.09207e-06
+  hidden position_0_2 2.18374e-06
   hidden position2_0_2 0.0087
-  hidden position_0_3 -4.11789e-07
-  hidden position_0_4 -4.11789e-07
-  hidden rotation_18 -5.46035e-7 0.00012552449 -0.99999999 0.0087000001
-  hidden position_18_0 1.70069e-07
-  hidden position_19_0 0.0349066
-  hidden rotation_20 0 0 1 0.0349066
-  hidden position_20_0 6.43083e-08
-  hidden position_21_0 -2.21547e-11
-  hidden position_21_1 -2.21476e-11
-  hidden position_21_2 7.57617e-11
+  hidden position_0_3 -8.95463e-08
+  hidden position_0_4 -8.95498e-08
+  hidden rotation_18 -1.0918719e-6 0.00025100345 -0.99999997 0.0087000004
+  hidden position_18_0 2.90011e-08
+  hidden position_19_0 0.0349063
+  hidden rotation_20 0 0 1 0.034906292
+  hidden position_20_0 1.15793e-07
+  hidden position_21_0 -2.21556e-11
+  hidden position_21_1 -2.21565e-11
+  hidden position_21_2 7.57649e-11
   hidden rotation_22 0 1 0 0.96
-  hidden position_22_0 4.08488e-11
+  hidden position_22_0 4.08602e-11
   hidden rotation_23 0 1 0 0.96
-  hidden position_23_0 1.8736e-11
+  hidden position_23_0 1.87307e-11
   hidden rotation_24 0 1 0 0.96
   hidden rotation_25 0 1 0 0.96
-  hidden position_25_0 4.08428e-11
+  hidden position_25_0 4.08611e-11
   hidden rotation_26 0 1 0 0.96
-  hidden position_26_0 1.87339e-11
+  hidden position_26_0 1.87321e-11
   hidden rotation_27 0 1 0 0.96
-  hidden position_28_0 1.11192e-11
+  hidden position_28_0 1.1124e-11
   hidden rotation_29 0 -1 0 0.96
-  hidden rotation_30 5.46035e-7 0.00012552449 0.99999999 0.0087000001
-  hidden position_30_0 -1.70069e-07
-  hidden position_31_0 -0.0349066
-  hidden rotation_32 0 0 -1 0.0349066
-  hidden position_32_0 -6.43083e-08
-  hidden position_33_0 -2.21494e-11
-  hidden position_33_1 -2.21485e-11
-  hidden position_33_2 7.57667e-11
+  hidden rotation_30 1.0918718e-6 0.00025100343 0.99999997 0.0087000004
+  hidden position_30_0 -2.90012e-08
+  hidden position_31_0 -0.0349061
+  hidden rotation_32 0 0 -1 0.034906138
+  hidden position_32_0 -1.15792e-07
+  hidden position_33_0 -2.21538e-11
+  hidden position_33_1 -2.21538e-11
+  hidden position_33_2 7.57623e-11
   hidden rotation_34 0 1 0 0.96
-  hidden position_34_0 4.08522e-11
+  hidden position_34_0 4.08606e-11
   hidden rotation_35 0 1 0 0.96
-  hidden position_35_0 1.87369e-11
+  hidden position_35_0 1.87325e-11
   hidden rotation_36 0 1 0 0.96
   hidden rotation_37 0 1 0 0.96
-  hidden position_37_0 4.086e-11
+  hidden position_37_0 4.08586e-11
   hidden rotation_38 0 1 0 0.96
-  hidden position_38_0 1.87308e-11
+  hidden position_38_0 1.87326e-11
   hidden rotation_39 0 1 0 0.96
-  hidden position_40_0 1.11237e-11
+  hidden position_40_0 1.11228e-11
   hidden rotation_41 0 -1 0 0.96
-  hidden position_42_0 5.30472e-07
-  hidden position_43_0 -9.90646e-07
-  hidden position_44_0 -1.00162e-06
-  hidden position_45_0 -1.02894e-06
-  hidden position_46_0 5.16093e-07
-  hidden translation_48 0.019999996 -0.0070000015 -0.040974742
-  hidden rotation_48 -1.6296653e-8 -1.6233225e-11 1 -3.1415853
-  hidden position_52_0 -5.30472e-07
-  hidden position_53_0 -9.90646e-07
-  hidden position_54_0 -1.00162e-06
-  hidden position_55_0 -1.02894e-06
-  hidden position_56_0 -5.16093e-07
-  hidden translation_58 0.019999996 0.0070000015 -0.040974742
-  hidden rotation_58 -1.6296654e-8 1.6269836e-11 1 -3.1415853
-  translation 4 0.33311368 2
-  rotation -0.57729516 -0.57742264 -0.577333 2.0943433
+  hidden position_42_0 -4.02517e-08
+  hidden position_43_0 -1.98033e-06
+  hidden position_44_0 -2.00231e-06
+  hidden position_45_0 -2.05697e-06
+  hidden position_46_0 9.39842e-07
+  hidden translation_48 0.019999994 -0.0069999869 -0.040954536
+  hidden rotation_48 -2.9239335e-8 -8.9933783e-11 1 -3.1415853
+  hidden position_52_0 4.02802e-08
+  hidden position_53_0 -1.98034e-06
+  hidden position_54_0 -2.00231e-06
+  hidden position_55_0 -2.05697e-06
+  hidden position_56_0 6.83045e-08
+  hidden translation_58 0.019999994 0.0069999869 -0.040954535
+  hidden rotation_58 -2.9239323e-8 1.00465e-10 1 -3.1415853
+  translation 4.1999876 0.33312419 2.9800539
+  rotation 0.18612213 0.69470817 0.69479429 3.5096702
   controller "naoqisim"
   controllerArgs "9559"
   synchronization FALSE
